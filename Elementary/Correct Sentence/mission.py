@@ -1,10 +1,7 @@
 def correct_sentence(text: str) -> str:
-    """
-        returns a corrected sentence which starts with a capital letter
-        and ends with a dot.
-    """
-    # your code here
-    return text
+    if text.find(".") == -1:
+        text += "."
+    return text.replace(text[0], text[0].upper(), 1)
 
 
 if __name__ == '__main__':

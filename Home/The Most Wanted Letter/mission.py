@@ -1,9 +1,6 @@
 import collections
 import re
 
-def check_equal(lst: list) -> bool:
-    return lst[1:] == lst[:-1]
-
 
 def create_list(data: iter) -> list:
     lst = []
@@ -11,16 +8,29 @@ def create_list(data: iter) -> list:
         lst.append(d)
     return lst
 
+
+def count(lst, x):
+    count = 0
+    for ele in lst:
+        if ele == x:
+            count += 1
+    return count
+
+
 def checkio(text: str) -> str:
     az = collections.defaultdict(int)
     for ch in text.lower():
         if re.match(r'[^a-z]', ch): continue
         az[ch] += 1
 
+    # Reverse sort the dict based on value
     lst = sorted(az, key=az.get, reverse=True)
-    if check_equal(create_list(az.values())):
-        lst = sorted(lst)
-    return lst[0]
+    # Take only the alphabets which has the max occurrence
+    vals = create_list(az.values())
+    if max(vals) > min(vals):
+        lst = lst[:count(vals, max(vals))]
+    # Sort key (alphabets) list and return the first item
+    return sorted(lst)[0]
 
 
 if __name__ == '__main__':
@@ -34,6 +44,7 @@ if __name__ == '__main__':
     assert checkio("Oops!") == "o", "Don't forget about lower case."
     assert checkio("AAaooo!!!!") == "a", "Only letters."
     assert checkio("abe") == "a", "The First."
+    assert checkio("lorem ipsum dolor sit amet") == "m", "Should be m not o"
     print("Start the long test")
     assert checkio("a" * 9000 + "b" * 1000) == "a", "Long."
     print("The local tests are done.")

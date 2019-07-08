@@ -1,5 +1,6 @@
 import re
 
+
 def checkio(data: str) -> bool:
     has_num = bool(re.search(r"[0-9]+", data))
     has_upp = bool(re.search(r"[A-Z]+", data))

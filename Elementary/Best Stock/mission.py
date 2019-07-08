@@ -1,6 +1,5 @@
 def best_stock(data):
-    # your code here
-    return 'GOOG'
+    return sorted(data, key=data.get, reverse=True)[0]
 
 
 if __name__ == '__main__':

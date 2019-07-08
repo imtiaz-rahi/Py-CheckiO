@@ -1,6 +1,10 @@
 def find_message(text: str) -> str:
-    """Find a secret message"""
-    return ""
+    secret = ""
+    for ch in text:
+        if ch.isupper():
+            secret += ch
+    return secret
+
 
 if __name__ == '__main__':
     print('Example:')
