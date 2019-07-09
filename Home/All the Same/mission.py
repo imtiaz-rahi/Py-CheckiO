@@ -1,9 +1,9 @@
 from typing import List, Any
 
 
+# https://stackoverflow.com/questions/3844801/check-if-all-elements-in-a-list-are-identical
 def all_the_same(elements: List[Any]) -> bool:
-    # your code here
-    return True
+    return elements[1:] == elements[:-1]
 
 
 if __name__ == '__main__':

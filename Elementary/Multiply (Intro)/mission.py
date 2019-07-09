@@ -1,6 +1,5 @@
 def mult_two(a, b):
-    # your code here
-    return None
+    return a * b
 
 
 if __name__ == '__main__':
