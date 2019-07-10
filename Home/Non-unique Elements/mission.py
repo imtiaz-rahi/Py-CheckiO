@@ -31,5 +31,5 @@ if __name__ == "__main__":
     assert list(checkio([1, 2, 3, 4, 5])) == [], "2nd example"
     assert list(checkio([5, 5, 5, 5, 5])) == [5, 5, 5, 5, 5], "3rd example"
     assert list(checkio([10, 9, 10, 10, 9, 8])) == [10, 9, 10, 10, 9], "4th example"
-    assert checkio(list(range(100000))+[0])) == [0, 0], “big list”
+    assert list(checkio(list(range(100000))+[0])) == [0, 0], "big list"
     print("It is all good. Let's check it now")

@@ -1,17 +1,12 @@
+import re
+
 VOWELS = "aeiouy"
 
 
 def translate(phrase):
-    idx = 0
-    value = ""
-    while idx < len(phrase):
-        ch = phrase[idx]
-        value += ch
-        if ch == " ":
-            idx += 1
-        else:
-            idx += 3 if ch in VOWELS else 2
-    return value
+    for ch in VOWELS:
+        phrase = re.sub(r'%s{3}' % ch, ch + ch, phrase)
+    return phrase[::2]
 
 
 if __name__ == '__main__':
