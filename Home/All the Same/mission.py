@@ -5,6 +5,8 @@ from typing import List, Any
 def all_the_same(elements: List[Any]) -> bool:
     return elements[1:] == elements[:-1]
 
+# return elements == elements[1:] + elements[:1]
+
 
 if __name__ == '__main__':
     print("Example:")

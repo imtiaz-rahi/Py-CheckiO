@@ -6,6 +6,11 @@ def time_converter(time):
     if hour > 12: hour %= 12
     return str(hour) + ":" + ar[1] + suffix
 
+# Clever solution with map and formatting
+# https://py.checkio.org/mission/time-converter-24h-to-12h/publications/martin_b/python-3/first/?ordering=most_voted&filtering=all
+# h, m = map(int, time.split(':'))
+# return f"{(h-1)%12+1}:{m:02d} {'ap'[h>11]}.m."
+
 
 if __name__ == '__main__':
     print("Example:")

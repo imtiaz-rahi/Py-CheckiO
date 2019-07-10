@@ -10,6 +10,20 @@ def checkio(data: list) -> list:
     # Remove the unique elements from list and return it
     return [el for el in data if el not in result.keys()]
 
+# Best, clear solution https://py.checkio.org/mission/non-unique-elements/publications/eiji/python-3/eiji
+# But slower, O(N^2)
+# return [i for i in data if data.count(i) > 1]
+# You can use list.count(element) method for counting.
+# Create new list with non-unique elements
+# or remove elements from original list (but it's bad practice for many real cases)
+# Loop over original list
+
+# Nice O(n) solution. Runs roughly 80x faster than the data.count(n) solution for a 1000 element list.
+# https://py.checkio.org/mission/non-unique-elements/publications/v0id/python-3/first
+# from collections import Counter
+# def checkio(data):
+#     counter = Counter(data)
+#     return [item for item in data if counter[item] > 1
 
 if __name__ == "__main__":
     # These "asserts" using only for self-checking and not necessary for auto-testing
@@ -17,4 +31,5 @@ if __name__ == "__main__":
     assert list(checkio([1, 2, 3, 4, 5])) == [], "2nd example"
     assert list(checkio([5, 5, 5, 5, 5])) == [5, 5, 5, 5, 5], "3rd example"
     assert list(checkio([10, 9, 10, 10, 9, 8])) == [10, 9, 10, 10, 9], "4th example"
+    assert checkio(list(range(100000))+[0])) == [0, 0], “big list”
     print("It is all good. Let's check it now")
