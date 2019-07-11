@@ -1,14 +1,15 @@
 def between_markers(text: str, begin: str, end: str) -> str:
-    pos1 = text.find(begin)
-    if pos1 == -1: pos1 = 0
-    else: pos1 += len(begin)
+    a, b, l = text.find(begin), text.find(end), len(begin)
+    val = [text[a+l:b], text[a+l:], text[:b], text]
+    #print(val)
+    #print("pos: " + str(2 * (a<0)+(b<0)))
+    return val[2 * (a<0)+(b<0)]
 
-    pos2 = text.find(end)
-    if pos2 == -1: pos2 = len(text)
-    elif pos1 > pos2: return ''
-
-    return text[pos1:pos2]
-
+# https://py.checkio.org/blog/using-regular-expressions-in-python/
+# https://py.checkio.org/mission/between-markers/publications/przemyslaw.daniel/python-3/3-liner-find-only
+def between_markers1(txt, begin, end):
+    a, b, c = txt.find(begin), txt.find(end), len(begin)
+    return [txt[a+c:b], txt[a+c:], txt[:b], txt][2*(a<0)+(b<0)]
 
 if __name__ == '__main__':
     print('Example:')
