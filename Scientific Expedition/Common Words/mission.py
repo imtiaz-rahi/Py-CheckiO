@@ -1,5 +1,9 @@
 def checkio(first, second):
-    return ""
+    intersection = set(first.split(',')) & set(second.split(','))
+    return ','.join(sorted(intersection))
+
+
+# return ",".join(sorted(item for item in second.split(“,”) if item in first))
 
 #These "asserts" using only for self-checking and not necessary for auto-testing
 if __name__ == '__main__':

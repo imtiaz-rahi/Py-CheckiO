@@ -1,6 +1,8 @@
+from collections import Counter
+
+
 def frequency_sort(items):
-    # your code here
-    return None
+    return [item for items, c in Counter(items).most_common() for item in [items] * c]
 
 
 if __name__ == '__main__':
@@ -8,6 +10,7 @@ if __name__ == '__main__':
     print(frequency_sort([4, 6, 2, 2, 6, 4, 4, 4]))
 
     # These "asserts" are used for self-checking and not for an auto-testing
+    assert list(frequency_sort([4, 6, 2, 2, 2, 6, 4, 4, 4])) == [4, 4, 4, 4, 2, 2, 2, 6, 6]
     assert list(frequency_sort([4, 6, 2, 2, 6, 4, 4, 4])) == [4, 4, 4, 4, 6, 6, 2, 2]
     assert list(frequency_sort(['bob', 'bob', 'carl', 'alex', 'bob'])) == ['bob', 'bob', 'bob', 'carl', 'alex']
     assert list(frequency_sort([17, 99, 42])) == [17, 99, 42]

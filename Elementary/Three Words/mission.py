@@ -10,6 +10,14 @@ def checkio(words: str) -> bool:
             return True
     return False
 
+# Clear solution [https://py.checkio.org/mission/three-words/publications/veky/python-3/for-else]
+#def checkio(words):
+#    succ = 0
+#    for word in words.split():
+#        succ = (succ + 1) * word.isalpha()
+#        if succ == 3: return True
+#    else: return False
+
 #These "asserts" using only for self-checking and not necessary for auto-testing
 if __name__ == '__main__':
     print('Example:')

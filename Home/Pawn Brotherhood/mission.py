@@ -1,5 +1,22 @@
+def valid_pos(ch: str, dg: int) -> bool:
+    return ch + str(dg) if ch.isalpha() and ch < 'i' and 0 < dg < 9 else None
+
+
+def friends(pawn: str) -> set:
+    ns = set()
+    (w, d) = pawn
+
+    ns.add(valid_pos(chr(ord(w) + 1), int(d) - 1))
+    ns.add(valid_pos(chr(ord(w) - 1), int(d) - 1))
+    return set(filter(lambda el: el is not None, ns))
+
+
 def safe_pawns(pawns: set) -> int:
-    return 0
+    count = 0
+    for pawn in pawns:
+        count += bool(friends(pawn) & pawns)
+    return count
+
 
 if __name__ == '__main__':
     #These "asserts" using only for self-checking and not necessary for auto-testing
