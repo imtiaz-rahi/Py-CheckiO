@@ -145,3 +145,5 @@ Thumbs.db
 gen/
 /*/build/
 proguard/
+
+sendgrid.env
