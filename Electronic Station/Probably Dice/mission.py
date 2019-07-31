@@ -1,4 +1,6 @@
 # https://stackoverflow.com/questions/36134980/probability-of-t-total-eyes-when-throwing-n-dice-with-s-sides
+# http://practicallypredictable.com/2017/12/04/probability-distributions-dice-rolls/
+# https://www.quora.com/Two-dice-are-rolled-What-is-the-probability-that-either-the-sum-of-the-numbers-is-3-or-one-or-both-of-the-numbers-are-6
 import collections
 
 

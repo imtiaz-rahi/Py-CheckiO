@@ -1,7 +1,19 @@
 def checkio(time_string: str) -> str:
+    time_string = " ".join(":".join(it.zfill(2) for it in time_string.split(":")))
+    result = ""
+    mins = [2, 8, 14]
+    hour_passed = False
+    for i, it in enumerate(time_string):
+        if it == ":":
+            hour_passed = True
+        fill = 3 if hour_passed else 2
+        if i in mins:
+            fill = 4
+        if it.isdigit():
+            it = bin(int(it))[2:].zfill(fill).replace("1", "-").replace("0", ".")
+        result += it
+    return result
 
-    #replace this for solution
-    return ".- .... : .-- .--- : -.. -..-"
 
 if __name__ == '__main__':
     print("Example:")
