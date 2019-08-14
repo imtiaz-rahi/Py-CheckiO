@@ -1,11 +1,10 @@
-def is_stressful(subj):
-    """
-        recoognise stressful subject
-    """
-    return False
+import re
 
-if __name__ == '__main__':
-    #These "asserts" using only for self-checking and not necessary for auto-testing
-    assert is_stressful("Hi") == False, "First"
-    assert is_stressful("I neeed HELP") == True, "Second"
-    print('Done! Go Check it!')
+
+def is_stressful(subj):
+    if bool(re.search(r".*[!]{3,}$", subj)) or subj.isupper():
+        return True
+    regex = r"(h)+[!.-]?(e)+[!.-]?(l)+[!.-]?(p)+(!.)?|" \
+            r"(a)+[!.-]?(s)+[!.-]?(a)+[!.-]?(p)+(!.)*|" \
+            r"(u)+[!.-]?(r)+[!.-]?(g)+[!.-]?(e)+[!.-]?(n)+[!.-]?(t)+(!.)*"
+    return bool(re.search(regex, subj, re.IGNORECASE))
