@@ -1,4 +1,4 @@
-FIRST_TEN = ["one", "two", "three", "four", "five", "six", "seven",
+FIRST_TEN = ["", "one", "two", "three", "four", "five", "six", "seven",
              "eight", "nine"]
 SECOND_TEN = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
               "sixteen", "seventeen", "eighteen", "nineteen"]
@@ -8,9 +8,19 @@ HUNDRED = "hundred"
 
 
 def checkio(number):
-
-    #replace this for solution
-    return 'string representation of n'
+    result = []
+    hundreds = int(number / 100)
+    if hundreds > 0:
+        result.append(f"{FIRST_TEN[hundreds]} {HUNDRED}")
+    number = number % 100
+    tens = int(number / 10)
+    if tens > 1:
+        result.append(f"{OTHER_TENS[tens-2]} {FIRST_TEN[number%10]}")
+    elif tens > 0:
+        result.append(SECOND_TEN[number-10])
+    else:
+        result.append(FIRST_TEN[number%10])
+    return ' '.join(result).rstrip()
 
 if __name__ == '__main__':
     #These "asserts" using only for self-checking and not necessary for auto-testing
