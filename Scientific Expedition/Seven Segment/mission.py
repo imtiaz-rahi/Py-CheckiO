@@ -43,11 +43,3 @@ def seven_segment(lit_seg, broken_seg):
     result = [get_num(lit_seg | item) for item in full_set]
     # Remove all None from the number list
     return len(list(filter(None, result)))
-
-
-if __name__ == '__main__':
-    assert seven_segment({'B', 'C', 'b', 'c'}, {'A'}) == 2, '11, 71'
-    assert seven_segment({'B', 'C', 'a', 'f', 'g', 'c', 'd'}, {'A', 'G', 'D', 'e'}) == 6, '15, 16, 35, 36, 75, 76'
-    assert seven_segment({'B', 'C', 'a', 'f', 'g', 'c', 'd'}, {'A', 'G', 'D', 'F', 'b', 'e'}) == 20, '15...98'
-    assert seven_segment([], ["A","B","C","D","E","F","G","a","b","c","d","e","f","g"]) == 100, '100x numbers'
-    print('"Run" is good. How is "Check"?')
