@@ -1,15 +1,12 @@
-# Taken from mission Army Battles
-
 class Warrior:
-    is_alive = True
-
-    def __init__(self, health=50, attack=5):
+    def __init__(self, health=50, attack=5, defense=0):
         self.health = health
         self.attack = attack
+        self.defense = defense
 
-    def take_hit(self, other):
-        self.health -= other.attack
-        self.is_alive = self.health > 0
+    @property
+    def is_alive(self) -> bool:
+        return self.health > 0
 
     def __str__(self):
         return "H: " + str(self.health) + "; A: " + str(self.attack)
@@ -17,105 +14,59 @@ class Warrior:
 
 class Knight(Warrior):
     def __init__(self):
-        super().__init__(50, 7)
+        super().__init__(50, 7, 0)
+
+
+class Defender(Warrior):
+    def __init__(self):
+        super().__init__(60, 3, 2)
 
 
 class Army:
     def __init__(self):
-        self.force = {}
+        self.soldiers = []
 
     def add_units(self, warrior: Warrior, count: int):
-        self.force[warrior] = count
+        self.soldiers += [warrior() for _ in range(count)]
+
+    @property
+    def is_alive(self) -> bool:
+        """Does the army have a living warrior?"""
+        return self.soldiers != []
+
+    @property
+    def soldier(self) -> Warrior:
+        """First warrior alive of the army"""
+        return self.soldiers[0]
+
+    @property
+    def pop(self):
+        """Pop a dead warrior out of the list"""
+        self.soldiers.pop(0)
 
 
 def fight(unit_1, unit_2):
+    """Duel fight: is unit 1 stronger than unit 2 ?"""
     while unit_1.is_alive and unit_2.is_alive:
-        unit_2.take_hit(unit_1)
-        if unit_1.is_alive and not unit_2.is_alive:
-            return True
-        unit_1.take_hit(unit_2)
-        if unit_1.is_alive and not unit_2.is_alive:
-            return True
-    return False
+        if unit_1.attack > unit_2.defense:
+            unit_2.health -= unit_1.attack - unit_2.defense
+        if unit_2.attack > unit_1.defense:
+            unit_1.health -= (unit_2.attack - unit_1.defense) if unit_2.is_alive else 0
+    return unit_1.is_alive
 
 
 class Battle:
 
-    def fight(self, me: Army, opponent: Army) -> bool:
-        keys1 = iter(list(me.force.keys()))
-        keys2 = iter(list(opponent.force.keys()))
-        while bool(me.force) is True and bool(opponent.force) is True:
-            who1 = next(keys1)
-            soldiers = me.force.pop(who1)
-            who2 = next(keys2)
-            enemies = opponent.force.pop(who2)
-            soldier = who1()
-            enemy = who2()
-            while soldiers > -1 and enemies > -1:
-                no1won = fight(soldier, enemy)
-                if no1won is True:
-                    enemies -= 1
-                    if enemies == 0:
-                        who2 = next(keys2, None)
-                        if who2 is None:
-                            return True
-                        enemies = opponent.force.pop(who2)
-                    enemy = who2()
-                else:
-                    soldiers -= 1
-                    if soldiers == 0:
-                        who1 = next(keys1, None)
-                        if who1 is None:
-                            return False
-                        soldiers = me.force.pop(who1)
-                    soldier = who1()
-
-        return True
+    def fight(self, army: Army, enemy: Army) -> bool:
+        while army.is_alive and enemy.is_alive:
+            if fight(army.soldier, enemy.soldier):
+                enemy.soldiers.pop(0)
+            else:
+                army.soldiers.pop(0)
+        return army.is_alive
 
 
 if __name__ == '__main__':
-    # These "asserts" using only for self-checking and not necessary for auto-testing
-
-    # fight tests
-    chuck = Warrior()
-    bruce = Warrior()
-    carl = Knight()
-    dave = Warrior()
-    mark = Warrior()
-
-    assert fight(chuck, bruce) == True
-    assert fight(dave, carl) == False
-    assert chuck.is_alive == True
-    assert bruce.is_alive == False
-    assert carl.is_alive == True
-    assert dave.is_alive == False
-    assert fight(carl, mark) == False
-    assert carl.is_alive == False
-
-    # battle tests
-    my_army = Army()
-    my_army.add_units(Knight, 3)
-
-    enemy_army = Army()
-    enemy_army.add_units(Warrior, 3)
-
-    army_3 = Army()
-    army_3.add_units(Warrior, 20)
-    army_3.add_units(Knight, 5)
-
-    army_4 = Army()
-    army_4.add_units(Warrior, 30)
-
-    battle = Battle()
-
-    assert battle.fight(my_army, enemy_army) == True
-    assert battle.fight(army_3, army_4) == False
-    print("Coding complete? Let's try tests!")
-
-
-if __name__ == '__main__':
-    #These "asserts" using only for self-checking and not necessary for auto-testing
-    
     #fight tests
     chuck = Warrior()
     bruce = Warrior()
