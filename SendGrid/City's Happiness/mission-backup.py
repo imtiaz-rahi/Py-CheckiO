@@ -1,4 +1,5 @@
 import collections
+from itertools import chain
 
 
 def find_dups(data, val):
@@ -7,24 +8,21 @@ def find_dups(data, val):
 
 def most_crucial(net, users):
     max_user = max(users, key=users.get)
-    # Check whether multiple node has same max user count
-    top_user = find_dups(users, users[max_user])
-    if len(top_user) == 1:
-        return top_user
-
-    # Prepare count of node presence in the network
-    net_count = collections.Counter([it for sub in net for it in sub])
-    top_nets = find_dups(net_count, net_count[max(net_count, key=net_count.get)])
-    if len(top_nets) == 1:
-        return top_nets
-    return sorted(set(top_user) & set(top_nets))
+    if len(find_dups(users, users[max_user])) == 1:
+        return [max_user]
+    # print(len(users.values()) == len(set(users.values())))
+    # Create counter of user and their count in net
+    network = collections.Counter([it for sub in net for it in sub])
+    print(network)
+    # check if multiple user has same count
+    # if not len(network.values()) == len(set(network.values())):
+    #     for k, v in network.items():
+    #         network[k] = v * users[k]
+    # print(network)
+    return [max(network, key=network.get)]
 
 
 if __name__ == '__main__':
-
-    assert most_crucial([["A", "B"], ["B", "C"], ["C", "A"]],
-                        {"A": 10, "C": 10, "B": 5}) == ['A', 'C']
-
     assert most_crucial([
         ["A", "B"],
         ["B", "C"],
