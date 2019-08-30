@@ -1,23 +1,19 @@
-import collections
-
-
-def find_dups(data, val):
-    return [k for k, v in data.items() if v == val]
+def duplicates(data, val):
+    return {k for k, v in data.items() if v == val}
 
 
 def most_crucial(net, users):
-    max_user = max(users, key=users.get)
     # Check whether multiple node has same max user count
-    top_user = find_dups(users, users[max_user])
-    if len(top_user) == 1:
-        return top_user
+    top_user = duplicates(users, max(users.values()))
+    if len(top_user) == 1: return list(top_user)
 
     # Prepare count of node presence in the network
+    import collections
     net_count = collections.Counter([it for sub in net for it in sub])
-    top_nets = find_dups(net_count, net_count[max(net_count, key=net_count.get)])
-    if len(top_nets) == 1:
-        return top_nets
-    return sorted(set(top_user) & set(top_nets))
+    top_nets = duplicates(net_count, max(net_count.values()))
+    if len(top_nets) == 1: return list(top_nets)
+
+    return sorted(top_user & top_nets)
 
 
 if __name__ == '__main__':
