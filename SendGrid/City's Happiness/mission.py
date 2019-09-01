@@ -1,3 +1,6 @@
+import collections
+
+
 def duplicates(data, val):
     return {k for k, v in data.items() if v == val}
 
@@ -8,8 +11,8 @@ def most_crucial(net, users):
     if len(top_user) == 1: return list(top_user)
 
     # Prepare count of node presence in the network
-    import collections
-    net_count = collections.Counter([it for sub in net for it in sub])
+    # sum can be used; sum(net, [])
+    net_count = collections.Counter(it for sub in net for it in sub)
     top_nets = duplicates(net_count, max(net_count.values()))
     if len(top_nets) == 1: return list(top_nets)
 
