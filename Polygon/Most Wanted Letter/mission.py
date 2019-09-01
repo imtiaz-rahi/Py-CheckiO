@@ -1,10 +1,15 @@
-def most_wanted(text: str) -> str:
+from collections import Counter
+import re
 
-    #replace this for solution
-    return ['a']
+
+def most_wanted(text: str) -> str:
+    count = Counter(re.sub(r'[^a-z]', '', text.lower()))
+    max_val = max(count.values())
+    return sorted([k for k, v in count.items() if v == max_val])
+
 
 if __name__ == '__main__':
-    #These "asserts" using only for self-checking and not necessary for auto-testing
+    assert most_wanted("Lorem ipsum dolor sit amet 0000000000000000000") == ["m","o"]
     assert sorted(most_wanted("Hello World!")) == ["l"], "Hello test"
     assert sorted(most_wanted("How do you do?")) == ["o"], "O is most wanted"
     assert sorted(most_wanted("One")) == ["e", "n", "o"], "All letter only once."
