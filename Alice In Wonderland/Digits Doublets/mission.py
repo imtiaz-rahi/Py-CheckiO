@@ -1,5 +1,6 @@
 # https://py.checkio.org/blog/digit-doublets-review/
 # https://www.christianpeccei.com/doublets-in-python/
+# https://www.blackgate.net/blog/doublet-solver-for-python/
 # NOT MY CODE
 def f(l, c, u):
     if l[-1] in c: return c
