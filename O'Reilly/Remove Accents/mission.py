@@ -1,10 +1,9 @@
-def checkio(in_string):
-    "remove accents"
-    
-    return in_string
+import unicodedata as ud
 
-    #These "asserts" using only for self-checking and not necessary for auto-testing
+def checkio(in_string):
+    return ''.join(c for c in ud.normalize('NFD', in_string) if ud.category(c) != 'Mn')
+
 if __name__ == '__main__':
     assert checkio(u"préfèrent") == u"preferent"
-    assert checkio(u"loài trăn lớn") == u"loai tran lon"
+    assert checkio(u"loài trăn lớn") == u"loai tran lon"
     print('Done')

@@ -1,8 +1,7 @@
 def checkio(number: int) -> int:
     sum = 1
     for d in str(number):
-        if (d == "0"):
-            continue
+        if d == "0": continue
         sum *= int(d)
     return sum
 
