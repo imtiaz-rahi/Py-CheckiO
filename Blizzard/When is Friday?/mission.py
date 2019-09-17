@@ -1,12 +1,11 @@
+from datetime import datetime
+
 def friday(day):
-    #replace this for solution
-    return 0
+    # Monday is 4 days away from Friday. Add an extra week to handle Sat and Sun
+    return (11 - datetime.strptime(day, '%d.%m.%Y').weekday()) % 7
 
 if __name__ == '__main__':
-    print("Example:")
-    print(friday('23.04.2018'))
-
-    #These "asserts" using only for self-checking and not necessary for auto-testing
+    assert friday('11.11.1111') == 6
     assert friday('23.04.2018') == 4
     assert friday('01.01.1999') == 0
     print("Coding complete? Click 'Check' to earn cool rewards!")
