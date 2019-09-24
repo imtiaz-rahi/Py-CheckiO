@@ -1,13 +1,11 @@
+def probability(w: int, b: int, step: int):
+    wp = w / (w + b)
+    if step == 1: return wp
+    return wp * probability(w-1, b+1, step-1) + ((1-wp) * probability(w+1, b-1, step-1))
+
+
 def checkio(marbles: str, step: int) -> float:
-    l = len(marbles)
-    rs = []
-    while step >= 0:
-        rs.append(marbles.count('w')/l)
-        marbles = marbles.replace('w', 'b')
-        print(marbles)
-        step -= 1
-    print(rs)
-    return 0.50
+    return round(probability(marbles.count('w'), marbles.count('b'), step), 2)
 
 
 if __name__ == '__main__':

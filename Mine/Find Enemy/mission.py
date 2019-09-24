@@ -4,6 +4,7 @@ def find_enemy(you, dir, enemy):
 
 
 if __name__ == '__main__':
+    assert find_enemy('B2', 'S', 'B4') == ['F', 2]
     assert find_enemy('G5', 'N', 'G4') == ['F', 1], "N-1"
     assert find_enemy('G5', 'N', 'I4') == ['R', 2], "NE-2"
     assert find_enemy('G5', 'N', 'J6') == ['R', 3], "SE-3"
