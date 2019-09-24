@@ -1,7 +1,15 @@
 def checkio(marbles: str, step: int) -> float:
+    l = len(marbles)
+    rs = []
+    while step >= 0:
+        rs.append(marbles.count('w')/l)
+        marbles = marbles.replace('w', 'b')
+        print(marbles)
+        step -= 1
+    print(rs)
     return 0.50
 
-#These "asserts" using only for self-checking and not necessary for auto-testing
+
 if __name__ == '__main__':
     print("Example:")
     print(checkio('bbw', 3))
