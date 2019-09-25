@@ -1,0 +1,66 @@
+<p>
+    Let's look at the AMSCO cipher. This is a positional cipher with exchanges. You can easily encode or decode a
+    message with a pen and paper, that is of course, if you know the key.
+</p>
+
+<p>
+    The key is represented as a number that consist of unique digits from 1 to N. N is a length of the key. To encode
+    message we should write a message in a matrix with N columns. The matrix is written row by row. In this process, one
+    or two characters are alternately recorded in a field. One or two characters alternate in rows and in columns too
+    (like a chessboard). The first element is single letter field (this is the arrangement for this mission). The last
+    field can have single characters if there are not enough. Columns are then numbered with digits from the key in
+    order. For example: using the key 312, the first column will be 3, the second is 1 and the third is 2. Lastly, you
+    will write all characters in the columns as they were numbered in the most recent step. All white spaces and
+    punctuation symbols are excluded while letters are in lowercase.
+</p>
+<p>
+    Let's look at this with an example. The message "Lorem ipsum dolor sit amet". And the key is 4123. The cut message
+    is "loremipsumdolorsitamet". In matrix form it will be:
+</p>
+<pre>
+   4   1   2   3
+   l  or   e  mi
+  ps   u  md   o
+   l  or   s  it
+  am   e   t
+
+</pre>
+<p>
+    Now write the columns as they are numbered in the ascending order - "oruore", "emdst", "mioit", "lpslam". The
+    encoded message is "oruoreemdstmioitlpslam".
+</p>
+<p>
+    You are given an encoded message and the key. Your mission is to decode the message.
+    Of course in the cut version.
+</p>
+<p>
+    <strong>Input: </strong> Two arguments. A message as a string (unicode) and a key as an integer.
+</p>
+
+<p>
+    <strong>Output: </strong> The decoded message as a string.
+</p>
+
+
+<div class="for_info_only">
+    <p>
+        <strong>Example:</strong>
+    </p>
+    <pre class="brush: python">
+decode_amsco("oruoreemdstmioitlpslam", 4123) == "loremipsumdolorsitamet"
+
+    </pre>
+</div>
+
+<p class="for_info_only">
+    <strong>How it is used: </strong>
+    For any cipher, it is important to realize both parts - encoding and decoding. This way, even if you know only one
+    part of the cipher, you can finalize an implementation.
+</p>
+
+<p>
+    <strong>Precondition:</strong>
+    4 &le; len(str(key))<br>
+    int(len(str(key)) * 1.5) &le; len(message)<br>
+    re.match("\w+$", message)
+</p>

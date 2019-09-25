@@ -1,0 +1,52 @@
+
+<p>
+    You have a Domino box. Domino tiles contain two numbers from 0 (empty) to 6. Tiles are unordered and 1-6 is the same as 6-1. The double-six set contains 28 unique tiles - all combinations of number pairs.
+</p>
+
+<p>
+    Several tiles fell out of the box. You should try to line up a chain from these tiles, compiling them to each other's suitable sides (sides with the same numbers). Thus, you can get a continuous chain of tiles. In some cases, such a chain will not be the only one.
+</p>
+
+<p>
+    For example, you've ended up these tiles:<br>
+    <strong>1-5, 2-5, 3-5, 4-5, 3-4</strong><br>
+    So, with them you can build two complete chains:<br>
+    <strong>1-5, 5-3, 3-4, 4-5, 5-2</strong><br>
+    <strong>1-5, 5-4, 4-3, 3-5, 5-2</strong><br>
+</p>
+
+<p>
+    <strong>Your goal in this mission</strong> is to count how many complete chains you can make using all of the given dominoes.
+</p>
+
+<p>
+    <strong>Note.</strong> Chains must be unique. An inverted chain is not considered as unique: "1-2, 2-3, 3-4, 4-5" and "5-4, 4-3, 3-2, 2-1" are the same chain.
+</p>
+
+<p><strong>Input:</strong>
+    String with the description of the domino tiles. Like this one: "5-4, 4-3, 3-2, 2-1".
+</p>
+
+<p><strong>Output:</strong>
+    Integer. The maximum number of complete chains that you can build using all of the given tiles.
+</p>
+
+<div class="for_info_only">
+    <p><strong>Examples:</strong></p>
+
+<pre class="brush: python">
+domino_chain("0-2, 0-5, 1-5, 1-3, 5-5") == 1
+domino_chain("1-5, 2-5, 3-5, 4-5, 3-4") == 2
+domino_chain("0-5, 1-5, 2-5, 3-5, 4-5, 3-4") == 0
+</pre>
+
+</div>
+
+<p class="for_info_only">
+    <strong>How it is used:</strong>
+    This is a combinatorial problem. You can solve it by modeling a real game of dominoes. Or refreshing your knowledge of graph theory. Many things in life resemble the process of forming a domino chain: for example, flights between several cities.
+</p>
+
+<p><strong>Precondition:</strong>
+    5 <= len(given_tiles) <= 17
+</p>

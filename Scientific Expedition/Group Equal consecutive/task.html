@@ -1,0 +1,39 @@
+<!-- Describe task in general -->
+
+<p>
+    Given a list of elements, create and return a list whose elements are lists that contain the consecutive runs of equal elements of the original list. Note that elements that aren’t duplicated in the original list should become singleton lists in the result, so that every element gets included in the resulting list of lists.
+</p>
+
+<!-- Explain input and output values -->
+<p>
+    <strong>Input: </strong> 
+    
+        List of str and int.
+    
+</p>
+
+<p>
+    <strong>Output: </strong> 
+        List of lists of str and int
+    
+</p>
+
+
+<!-- Put some usage examples -->
+<div class="for_info_only">
+    <p>
+        <strong>Example:</strong>
+    </p>
+
+
+<pre class="brush: python">
+group_equal([1, 1, 4, 4, 4, "hello", "hello", 4]) == [[1,1],[4,4,4],["hello","hello"],[4]]
+group_equal([1, 2, 3, 4]) == [[1], [2], [3], [4]]
+group_equal([1]) == [[1]]
+group_equal([]) == []
+</pre>
+
+</div>
+
+<p><i>The mission was taken from Python CCPS 109 Fall 2018. It is taught for Ryerson Chang School of Continuing Education by <a href="http://www.scs.ryerson.ca/~ikokkari/">Ilkka Kokkarinen</a></i></p>
+

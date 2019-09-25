@@ -1,0 +1,65 @@
+<p>
+    Nicola takes a moment to study the ghosts. He is trying to think up a new method to determine just how old these ghosts are.
+    He knows that their age is somehow related to their opacity. To measure their opacity Nikola uses a scale of 10000 units to 0 units,
+    where 10000 is a completely opaque newborn ghost (0 years old) and 0 is completely transparent ghost (of an unknown age).
+</p>
+
+
+<p>
+    After some experimenting, Nikola thinks he has discovered the law of ghostly opacity.
+    On every birthday, a ghost's opacity is reduced by a number of units equal to its age
+    when its age is a Fibonacci number (<a href="http://en.wikipedia.org/wiki/Fibonacci_number">Read about this here</a>)
+    or increased by 1 if it is not.
+</p>
+<p>
+    For example:<br>
+    A newborn ghost -- 10000 units of opacity.<br>
+    1 year -- 10000 - 1 = 9999 (1 is a Fibonacci number).<br>
+    2 year -- 9999 - 2 = 9997 (2 is a Fibonacci number).<br>
+    3 year -- 9997 - 3 = 9994 (3 is a Fibonacci number).<br>
+    4 year -- 9994 + 1 = 9995 (4 is not a Fibonacci number).<br>
+    5 year -- 9995 - 5 = 9990 (5 is a Fibonacci number).<br>
+</p>
+
+
+<p>
+    Help Nicola write a function which will determine the age of a ghost based on its opacity.
+    You are given opacity measurements as a number ranging from 0 to 10000 inclusively.
+    The ghosts cannot be older than 5000 years as they simply disappear after such a long time (really!).
+</p>
+
+<p>
+    <strong>This is a Halloween task so you should try and write a "magic" or "scary" solution. Please, do not write "regular" solution.</strong>
+</p>
+<p>
+    <strong>Input: </strong> An opacity measurement as an integer.
+</p>
+
+<p>
+    <strong>Output: </strong> The age of the ghost as an integer.
+</p>
+
+
+<div class="for_info_only">
+    <p>
+        <strong>Example:</strong>
+    </p>
+    <pre class="brush: python">checkio(10000) == 0
+checkio(9999) == 1
+checkio(9997) == 2
+checkio(9994) == 3
+checkio(9995) == 4
+checkio(9990) == 5</pre>
+</div>
+
+<p class="for_info_only">
+    <strong>How it is used: </strong>
+    This task was made for some spooky fun! We hope to see your funny, tricky and creative solutions!
+</p>
+
+
+<p>
+    <strong>Precondition:</strong><br>
+    age &lt; 5000<br>
+    0 &lt; opacity &le; 10000
+</p>

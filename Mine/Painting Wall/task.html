@@ -1,0 +1,71 @@
+<p>
+    Nicola has built a simple robot for painting of the wall.
+    The wall is marked at each meter and the robot has a list of painting operations.
+    Each operation describes which part of wall it needs to paint as a range from place to place, inclusively.
+    For example: the operation [1, 5] means to paint the sections from 1 to 5 meters including sections 1 and 5.
+    Operations are executed in the order they are placed in the list of operations.
+    If the range of various operations are overlapped, then <b>they must be counted once</b>.
+</p>
+<p>
+    Stephan has prepared a list of operations, but we need to check it before the robot executes its painting plan.
+    You are given the number of meters on the walls which need painting,
+    (the painted zones can be separated by non painted parts) and the list of operations prepared by Stephan,
+    you should determine the number of operations from this list required to paint the designated length of the wall.
+    If it's impossible to paint that length with the given operations, then return -1.
+</p>
+
+<p style="text-align: center;">
+    <img class="for_info_only"
+         title="painting-wall"
+         src="https://py-static.checkio.org/media/task/media/2758f106aa1b4cc098296a643c682f47/painting-wall.svg"
+         alt="painting-wall"
+         width="600px"/>
+    <img class="for_editor_only"
+         title="painting-wall"
+         src="https://py-static.checkio.org/media/task/media/2758f106aa1b4cc098296a643c682f47/painting-wall.svg"
+         alt="painting-wall"
+         width="380px"/>
+</p>
+
+<p>
+    <strong>Input: </strong> Two arguments.
+    <ul style="margin-left: 20px;">
+        <li style="list-style: disc;">The required length of the wall that should be painted, as integer.</li>
+        <li style="list-style: disc;">A list of the operations that contains the range (inclusive) as a list of two integers.</li>
+    </ul>
+</p>
+
+<p>
+    <strong>Output: </strong> The minimum number of operations. If you cannot paint enough of the length with the given operations, return -1.
+</p>
+
+<div class="for_info_only">
+    <p>
+        <strong>Example:</strong>
+    </p>
+    <pre class="brush: python">
+checkio(5, [[1,5], [11,15], [2,14], [21,25]]) == 1 # The first operation will paint 5 meter long.
+checkio(6, [[1,5], [11,15], [2,14], [21,25]]) == 2 # The second operation will paint 5 meter long. The sum is 10.
+checkio(11, [[1,5], [11,15], [2,14], [21,25]]) == 3 # After the third operation, the range 1-15 will be painted.
+checkio(16, [[1,5], [11,15], [2,14], [21,25]]) == 4 # Note the overlapped range must be counted only once.
+checkio(21, [[1,5], [11,15], [2,14], [21,25]]) == -1 # There are no ways to paint for 21 meters from this list.
+
+checkio(1000000011,[[1,1000000000],[11,1000000010]]) == -1 # One of the huge test cases.
+    </pre>
+</div>
+
+<p>
+    <strong>Hint: </strong> To handle the beginning-end of the list, you could try running a binary search.
+</p>
+
+<p class="for_info_only">
+    <strong>How it is used: </strong>
+    This skillset is often used in computer simulations.
+</p>
+
+
+<p><strong>Precondition</strong>:<br>
+    0 &lt; len(<strong>operations</strong>) &le; 30<br>
+    all(0 &lt; x &lt; 2 * 10 ** 18 and 0 &lt; y &lt; 2 * 10 ** 18 for x, y in <strong>operations</strong>)<br>
+    0 &lt; required &lt; 2 * 10 ** 18
+</p>

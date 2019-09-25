@@ -1,0 +1,44 @@
+<p>
+In this time, you need to implement the solver of <a href="https://en.wikipedia.org/wiki/Lights_Out_(game)"> Lights Out</a> the puzzle.
+</p>
+<p>rule of the puzzle :
+<ul>
+    <li>This puzzle uses 5x5 grid. Each panel has two state ( light on or off ).</li>
+
+    <li>if you click a panel, the panel and adjacent (4 directions) panels will flip. ( on <=> off )</li>
+    <li>The goal is all panels lights off.</li>
+</ul>
+
+<p>
+    <img src="https://py-static.checkio.org/media/task/media/fcdd3c70559547818eef53b57f240ad0/illustration.png" style="max-height: 869px;">
+</p>
+
+<p>
+    <strong>Input: </strong>ON-state panels as a list of Integers. 
+</p>
+
+<p>
+    <strong>Output: </strong> Clicked panels as a list of Integers. 
+</p>
+
+
+
+<div class="for_info_only">
+    <p>
+        <strong>Example:</strong>
+    </p>
+<pre class="brush: python">
+wall_keeper([5, 7, 13, 14, 18]) == [2, 6, 7, 8, 10, 12, 15, 18, 24, 25]
+</pre>
+</div>
+
+<p class="for_info_only">
+    <strong>How it is used: </strong>
+    Get the puzzle's automatic answer.
+</p>
+
+<p>
+    <strong>Precondition:</strong><br>
+    all([1 <= p <= 25 for p in on_panels])<br>
+    It does not have to be the shortest answer
+</p>

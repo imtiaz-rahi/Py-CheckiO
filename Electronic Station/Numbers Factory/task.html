@@ -1,0 +1,46 @@
+<p>
+    You are given a two or more digits number <strong>N</strong>.
+    For this mission, you should find the smallest positive number of <strong>X</strong>,
+    such that the product of its digits is equal to N.
+    If X does not exist, then return 0.
+</p>
+<p>
+    Let's examine the example. N = 20. We can factorize this number as 2*10, but 10 is not a digit.
+    Also we can factorize it as 4*5 or 2*2*5. The smallest number for 2*2*5 is 225, for 4*5 -- 45. So we select 45.
+</p>
+
+<p>
+    <strong>Hints: </strong> Remember prime numbers (numbers divisible by only one) and be careful with endless loops.
+</p>
+
+<p>
+    <strong>Input: </strong> A number N as an integer.
+</p>
+
+<p>
+    <strong>Output: </strong> The number X as an integer.
+</p>
+
+<div class="for_info_only">
+    <p>
+        <strong>Example:</strong>
+    </p>
+<pre class="brush: python">checkio(20) == 45
+checkio(21) == 37
+checkio(17) == 0
+checkio(33) == 0
+</pre>
+</div>
+<p>
+    <strong>How it is used:</strong>
+    This task will teach you how to work with numbers in code.
+    You can factorize numbers and reconstruct them into new numbers.
+    Of course you can solve this problem with brute force,
+    but is that the best way?
+    Numbers are the foundation of mathematics and programming.
+</p>
+
+<p>
+    <strong>Precondition: </strong><br>
+    9 &lt; N &lt; 10<sup>5</sup>.
+</p>
