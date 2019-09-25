@@ -1,3 +1,5 @@
+# Taken from mission The Vampires
+
 class Warrior:
     def __init__(self, health=50, attack=5, defense=0):
         self.health = health
@@ -84,13 +86,8 @@ class Battle:
         return army1.has_live_unit
 
 
-class Rookie(Warrior):
-    def __init__(self):
-        super().__init__(health=50, attack=1)
-
-
 if __name__ == '__main__':
-    # fight tests
+    #fight tests
     chuck = Warrior()
     bruce = Warrior()
     carl = Knight()
@@ -104,6 +101,8 @@ if __name__ == '__main__':
     adam = Vampire()
     richard = Defender()
     ogre = Warrior()
+    freelancer = Lancer()
+    vampire = Vampire()
 
     assert fight(chuck, bruce) == True
     assert fight(dave, carl) == False
@@ -117,41 +116,34 @@ if __name__ == '__main__':
     assert fight(lancelot, rog) == True
     assert fight(eric, richard) == False
     assert fight(ogre, adam) == True
+    assert fight(freelancer, vampire) == True
+    assert freelancer.is_alive == True
 
-    unit_1 = Defender()
-    unit_2 = Rookie()
-    fight(unit_1, unit_2)
-    assert unit_1.health == 60
-
-    # battle tests
+    #battle tests
     my_army = Army()
     my_army.add_units(Defender, 2)
     my_army.add_units(Vampire, 2)
+    my_army.add_units(Lancer, 4)
     my_army.add_units(Warrior, 1)
+    
     enemy_army = Army()
     enemy_army.add_units(Warrior, 2)
+    enemy_army.add_units(Lancer, 2)
     enemy_army.add_units(Defender, 2)
     enemy_army.add_units(Vampire, 3)
 
     army_3 = Army()
     army_3.add_units(Warrior, 1)
-    army_3.add_units(Defender, 4)
+    army_3.add_units(Lancer, 1)
+    army_3.add_units(Defender, 2)
+
     army_4 = Army()
     army_4.add_units(Vampire, 3)
-    army_4.add_units(Warrior, 2)
-
-    army_1 = Army()
-    army_1.add_units(Defender, 5)
-    army_1.add_units(Vampire, 6)
-    army_1.add_units(Warrior, 7)
-    army_2 = Army()
-    army_2.add_units(Warrior, 6)
-    army_2.add_units(Defender, 6)
-    army_2.add_units(Vampire, 6)
+    army_4.add_units(Warrior, 1)
+    army_4.add_units(Lancer, 2)
 
     battle = Battle()
 
-    assert battle.fight(my_army, enemy_army) == False
-    assert battle.fight(army_3, army_4) == True
-    assert battle.fight(army_1, army_2) == False
+    assert battle.fight(my_army, enemy_army) == True
+    assert battle.fight(army_3, army_4) == False
     print("Coding complete? Let's try tests!")

@@ -1,12 +1,17 @@
 class Warrior:
-    def __init__(self, health=50, attack=5, defense=0):
+    def __init__(self, health=50, attack=5):
         self.health = health
         self.attack = attack
-        self.defense = defense
 
     @property
     def is_alive(self) -> bool:
         return self.health > 0
+
+    def loose_health(self, damage):
+        self.health -= damage
+
+    def hit(self, victim):
+        victim.loose_health(self.attack)
 
     def __str__(self):
         return "H: " + str(self.health) + "; A: " + str(self.attack)
@@ -14,12 +19,16 @@ class Warrior:
 
 class Knight(Warrior):
     def __init__(self):
-        super().__init__(50, 7, 0)
+        super().__init__(attack=7)
 
 
 class Defender(Warrior):
     def __init__(self):
-        super().__init__(60, 3, 2)
+        super().__init__(health=60, attack=3)
+        self.defense = 2
+
+    def loose_health(self, damage):
+        super().loose_health(max(damage - self.defense, 0))
 
 
 class Army:
@@ -30,40 +39,32 @@ class Army:
         self.soldiers += [warrior() for _ in range(count)]
 
     @property
-    def is_alive(self) -> bool:
-        """Does the army have a living warrior?"""
-        return self.soldiers != []
+    def has_live_unit(self) -> bool:
+        """Does the army has a living warrior?"""
+        return bool(self.next_soldier())
 
-    @property
-    def soldier(self) -> Warrior:
-        """First warrior alive of the army"""
-        return self.soldiers[0]
-
-    @property
-    def pop(self):
-        """Pop a dead warrior out of the list"""
-        self.soldiers.pop(0)
+    def next_soldier(self) -> Warrior:
+        """Return the first alive soldier"""
+        for unit in self.soldiers:
+            if unit.is_alive: return unit
+        return None
 
 
-def fight(unit_1, unit_2):
-    """Duel fight: is unit 1 stronger than unit 2 ?"""
-    while unit_1.is_alive and unit_2.is_alive:
-        if unit_1.attack > unit_2.defense:
-            unit_2.health -= unit_1.attack - unit_2.defense
-        if unit_2.attack > unit_1.defense:
-            unit_1.health -= (unit_2.attack - unit_1.defense) if unit_2.is_alive else 0
+def fight(unit_1: Warrior, unit_2: Warrior) -> bool:
+    bully, victim = unit_1, unit_2
+    while True:
+        bully.hit(victim)
+        if not victim.is_alive: break
+        bully, victim = victim, bully
     return unit_1.is_alive
 
 
 class Battle:
-
-    def fight(self, army: Army, enemy: Army) -> bool:
-        while army.is_alive and enemy.is_alive:
-            if fight(army.soldier, enemy.soldier):
-                enemy.soldiers.pop(0)
-            else:
-                army.soldiers.pop(0)
-        return army.is_alive
+    @staticmethod
+    def fight(army1: Army, army2: Army) -> bool:
+        while army1.has_live_unit and army2.has_live_unit:
+            fight(army1.next_soldier(), army2.next_soldier())
+        return army1.has_live_unit
 
 
 if __name__ == '__main__':
