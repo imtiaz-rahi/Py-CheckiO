@@ -1,12 +1,10 @@
-# Updated based on https://py.checkio.org/mission/calls-home/publications/Sim0000/python-3/counter
-from collections import Counter
-
-
+# http://python-history.blogspot.com/2010/08/why-pythons-integer-division-floors.html
 def total_cost(calls):
-    data = Counter()
+    data = {}
     for call in calls:
         dt, _, dur = call.split()
-        data[dt] += (int(dur)+59) // 60
+        # Python integers division ceil when one of the operands is negative
+        data[dt] = data.get(dt, 0) + abs(int(dur)//-60)
     return sum(max(d * 2 - 100, d) for d in data.values())
 
 
