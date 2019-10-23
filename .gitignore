@@ -153,3 +153,4 @@ proguard/
 sendgrid.env
 task-info.yaml
 task-remote-info.yaml
+*.yaml

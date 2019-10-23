@@ -2,7 +2,8 @@ from datetime import datetime
 
 def friday(day):
     # Monday is 4 days away from Friday. Add an extra week to handle Sat and Sun
-    return (11 - datetime.strptime(day, '%d.%m.%Y').weekday()) % 7
+    # return (11 - datetime.strptime(day, '%d.%m.%Y').weekday()) % 7
+    return (12 - datetime.strptime(day, '%d.%m.%Y').isoweekday()) % 7
 
 if __name__ == '__main__':
     assert friday('11.11.1111') == 6

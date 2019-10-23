@@ -1,11 +1,9 @@
-from typing import List
+def checkio(data) -> [int, float]:
+    data.sort()
+    half = len(data) // 2
+    return (data[half] + data[~half]) / 2
 
-def checkio(data: List[int]) -> [int, float]:
 
-    #replace this for solution
-    return data[0]
-
-#These "asserts" using only for self-checking and not necessary for auto-testing
 if __name__ == '__main__':
     print("Example:")
     print(checkio([1, 2, 3, 4, 5]))

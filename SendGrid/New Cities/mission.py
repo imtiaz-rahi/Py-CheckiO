@@ -1,8 +1,23 @@
 def subnetworks(net, crushes):
-    return 0
+    isolated = []
+    for crushed in crushes:
+        for n in net:
+            if crushed in n:
+                n.remove(crushed)
+                if len(n) == 0:
+                    net.remove(n)
+                    continue
+                isolated.append(n[0])
+
+    # Check whether any of the items in isolated are connected to another node in net
+    for lonely in isolated:
+        for n in net:
+            if len(n) == 2 and lonely in n:
+                net.remove([lonely])
+    return len(net)
+
 
 if __name__ == '__main__':
-    #These "asserts" using only for self-checking and not necessary for auto-testing
     assert subnetworks([
             ['A', 'B'],
             ['B', 'C'],
