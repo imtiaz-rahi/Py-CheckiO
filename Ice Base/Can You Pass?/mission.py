@@ -15,7 +15,6 @@ def can_pass(matrix, first, second):
 
     movements = [first]
     next_xy = move_to(neighbors(matrix, first), movements)
-    print(next_xy)
     while next_xy != second:
         if next_xy is None: return False
         movements.append(next_xy)
