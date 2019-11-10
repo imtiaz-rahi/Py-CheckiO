@@ -1,0 +1,69 @@
+<p>
+    Our robots like games that require the ability to calculate equations.
+    Mission control recently sent them the new game to occupy their time while flying from one Island to the next.
+    This game is called "Numbered Triangles".
+    Players take 6 chips from the pile, each chip is made of an equilateral triangle with three numbers one on each edge.
+    You can move, rotate and flip the chips so they form a hexagon.
+    The hexagon is <strong>only legal</strong> if the adjacent edges for each triangle have matching numbers.
+</p>
+
+<p>
+    The score for a legal hexagon is the sum of the numbers on the outside six edges.
+    The player's goal is to find the highest score that can be achieved with the given six chips.
+</p>
+
+<p style="text-align: center;">
+    <img class="for_info_only"
+         title="numbered-triangles"
+         src="https://py-static.checkio.org/media/task/media/142402a4d13a4d6fac5f3b522458707e/numbered-triangles.png"
+         alt="numbered-triangles"
+         width="600px"/>
+    <img class="for_editor_only"
+         title="numbered-triangles"
+         src="https://py-static.checkio.org/media/task/media/142402a4d13a4d6fac5f3b522458707e/numbered-triangles.png"
+         alt="numbered-triangles"
+         width="380px"/>
+</p>
+
+<p>
+    Each chip is represented as a list with three positive numbers.
+    You should help the robots find the highest score for the given chips and return the score as a number.
+    If you cannot form legal hexagon from the chips, then return a score of 0.
+</p>
+<p>
+    <strong>Input: </strong> The chip info as a list of lists. Each list contain three integers.
+</p>
+
+<p>
+    <strong>Output: </strong> The highest possible score as an integer.
+</p>
+
+
+<div class="for_info_only">
+    <p>
+        <strong>Example:</strong>
+    </p>
+<pre class="brush: python">checkio([[1, 4, 20], [3, 1, 5], [50, 2, 3],
+         [5, 2, 7], [7, 5, 20], [4, 7, 50]]) == 152
+checkio([[1, 10, 2], [2, 20, 3], [3, 30, 4],
+         [4, 40, 5], [5, 50, 6], [6, 60, 1]]) == 210
+checkio([[1, 2, 3], [2, 1, 3], [4, 5, 6],
+         [6, 5, 4], [5, 1, 2], [6, 4, 3]]) == 21
+checkio([[5, 9, 5], [9, 6, 9], [6, 7, 6],
+         [7, 8, 7], [8, 1, 8], [1, 2, 1]]) == 0
+
+</pre>
+</div>
+
+<p class="for_info_only">
+    <strong>How it is used: </strong>
+    This concept is used in optimization systems;
+    you have constraints but you should work to get the most with these constraints.
+    Of course this algorithm can be useful for the realisation of gameplay mechanics.
+</p>
+
+<p>
+    <strong>Precondition:</strong><br>
+    len(chips) == 6<br>
+    all(all(0 &lt; x &lt; 100 for x in ch) for ch in chips)
+</p>

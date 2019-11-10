@@ -1,0 +1,114 @@
+<!-- Describe task in general -->
+<p>
+	This mission is an adaptation of the "Inertia" game (from
+	<a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/">
+	Simon Tatham's Portable Puzzle Collection</a>).
+	If you are lost or just want to play, the game is available
+	<a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/inertia.html">here</a>.
+</p>
+
+<p>
+	You're on a rectangular mined icefield: when you go in one direction,
+	you slide on the ice until you're stopped by a rock, the end of the icefield,
+	or some rough spot. But you're here for a good reason, <strong>there are gems
+	on the icefield: you have to find any route to collect them all,
+	avoiding the mines.</strong>
+</p>
+
+<p>
+	The icefield will be represented by a tuple of strings. Gems will be represented
+	by '$', rocks by 'X', mines by '*', ice by ' ' and rough spots by '.'.
+</p>
+
+<p>
+	You can go in all eight directions: northwest 'NW', north 'N', northeast 'NE',
+	west 'W', east 'E', southwest 'SW', south 'S', southeast 'SE'.
+</p>
+
+<pre class="for_info_only" style="text-align:center">
+<img src="https://py-static.checkio.org/media/task/media/6e88686f2b59479bbd231db628101063/inertia-example.png" alt="8x10 example image"/>
+<!-- 10x8:bSgmswmwmgswgmmbwbwgbmsgbmwsswmsmsbgwwgwbbsbbwsmbsbsmwswgmgwsggbbsmswgmgmsmwgggb -->
+Dead route (you're stuck): ['SE', 'E', 'SE']
+
+Possible route: ['SE', 'E', 'W', 'NW', 'N',
+                 'S', 'SW', 'S', 'S', 'NE',
+                 'E', 'SE', 'E', 'N', 'SW',
+                 'NW', 'NW', 'SE', 'NE',   
+                 'NW', 'E', 'NE', 'N']     
+
+grid = (' .$*.X*X*$',        start = (0, 1)
+        '.X$** X X$',                      
+        ' *.$ *X..X',                      
+        '*.*. $XX$X',                      
+        '  .  X.* .',                      
+        ' .*X.X$*$X',                      
+        '.$$  .*.X$',                      
+        '*$*.*X$$$ ')                      
+</pre>
+
+
+<!-- Explain input and output values -->
+<p>
+	<strong>Input:</strong>
+	A tuple of strings and a tuple of two ints.
+</p>
+
+<p>
+	<strong>Output:</strong>
+	An iterable of strings.
+</p>
+
+
+<!-- Put some usage examples -->
+<div class="for_info_only">
+<p>
+	<strong>Example:</strong>
+</p>
+
+<pre class="brush: python">
+list(checkio((' .$*.X*X*$',
+              '.X$** X X$',
+              ' *.$ *X..X',
+              '*.*. $XX$X',
+              '  .  X.* .',
+              ' .*X.X$*$X',
+              '.$$  .*.X$',
+              '*$*.*X$$$ '), (0, 1))) = ['SE', 'E', 'W', 'NW', 'N', 
+                                         'S', 'SW', 'S', 'S', 'NE',
+                                         'E', 'SE', 'E', 'N', 'SW', 
+                                         'NW', 'NW', 'SE', 'NE',
+                                         'NW', 'E', 'NE', 'N']
+</pre>
+
+<p>
+	To play the puzzles / tests yourself:
+	<a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/inertia.html#5x5:mwggsbSgmssssbwbmgmbwwwmg" title="5 rows, 5 columns: start=(1, 1) and grid=('*X$$.', ' .$*.', '... X', ' *$* ', 'XXX*$')">1</a>
+	<a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/inertia.html#6x7:mmgsbbgmgssbwsmmsgmwwgbsswbbwwwgmbwggSmbbs" title="7 rows, 6 columns: start=(6, 1) and grid=('**$.  ', '$*$.. ', 'X.**.$', '*XX$ .', '.X  XX', 'X$* X$', '$.*  .')">2</a>
+	<a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/inertia.html#10x5:bwmmgwsgwmmgbwgswmgsmbmwgssggwmsbbsmbmSbwsgswwbgbs" title="5 rows, 10 columns: start=(3, 8) and grid=(' X**$X.$X*', '*$ X$.X*$.', '* *X$..$$X', '*.  .* *. ', 'X.$.XX $ .')">3</a>
+	<a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/inertia.html#10x8:ssgwwgwggsmmsswmsswsmwgmbSgssggmbsbwggmmwgbssbwmswbwbbgwwmmmmwggsgmsbmmgbwbbbbbw" title="8 rows, 10 columns: start=(2, 5) and grid=('..$XX$X$$.', '**..X*..X.', '*X$* .$..$', '$* . X$$**', 'X$ .. X*.X', ' X ...">4</a>
+	<a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/inertia.html#10x8:wmwmsmsgmmsbgbbbwbgbSmbmmwgggbswmbsgsbwmbsmwmbmgwswwggbssswmmgsgbwsmwswwgwggsgsb" title="8 rows, 10 columns: start=(2, 0) and grid=('X*X*.*.$**', '. $   X $ ', '.* **X$$$ ', '.X* .$. X*', ' .*X* *$X.', 'XX$...">5</a>
+	<a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/inertia.html#10x8:gsggbwssbsmwwsbgsmgsbmswgsswgwwgbbmgmwgSmgbgbgsbsbssmbwbmwmgmssgmmwmbmbgwbmwwwwm" title="8 rows, 10 columns: start=(3, 9) and grid=('$.$$ X.. .', '*XX. $.*$.', ' *.X$..X$X', 'X$  *$*X$.', '*$ $ $. . ', '..*...">6</a>
+	<a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/inertia.html#11x12:wbbwmgggwmwbsmsswswbgbmsgsgssgbgmmwsmmmssmwmwsmwbwssbwbbggwswwgbmgbbmgmswgmsggbgmmmsgmmsggbswsbbbwmsbbggbSmbwbbwgbwswmmgbbwswgwsswmg" title="12 rows, 11 columns: start=(9, 6) and grid=('X  X*$$$X*X', ' .*..X.X $ ', '*.$.$..$ $*', '*X.***..*X*', 'X.*X X.. X ',...">7</a>
+	<a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/inertia.html#15x12:Sgwbbmgbbmmbwwmsgbwmwbbwwgsgsgbwgbgmmwbwmggmwbbsgsgwbwbwsbgwgwmmggwmmgsbmsmgwsmwwgbsmwsmmssgbgmmsbssgbgwwswbggbbmwwwsbsmgbswsgmmmmsmgmbmmsbgswbmwwbgssswbbmbgmmwswgssgswwbgmssgssgbs" title="12 rows, 15 columns: start=(0, 0) and grid=('.$X  *$  ** XX*', '.$ X*X  XX$.$.$', ' X$ $**X X*$$*X', '  .$.$X X X. $X'...">8</a>
+	<a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/inertia.html#15x12:mmwgssswwmmgbbsgswsmgSwmmwbmmwgbwwbwwbmbmswwbwgsggsbsbmbgbgmbsmgwwwwsbgwsmmwgmgbgmmsggwgmbsbmbgbsssbmmwmmswssbmbwbgsgbggwgwwsbmwgwgmmbgbggsmmbgsgsswbmmsswwmbsgssgwbbwbsmbbgggmsssww" title="12 rows, 15 columns: start=(1, 6) and grid=('**X$...XX**$  .', '$.X.*$.X**X **X', '$ XX XX * *.XX ', 'X$.$$. . * $ $*'...">9</a>
+	<a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/inertia.html#15x12:mwbgbswbbmsmggsgggwbgwmwwbgsggmwgmmwsmmmbsmwbswsbswwgsmgsggggwbgwmgmbsbmsgmgsgmsbbssbbsbwssswssbbwgmmbgwmwggbmwwmsmswswbmbbmbbmgwswgmwsbmbbmbsbmgsgmSgbmbwbwwwsgwbgssmwwwmssggmsmgww" title="12 rows, 15 columns: start=(9, 13) and grid=('*X $ .X  *.*$$.', '$$$X $X*XX $.$$', '*X$**X.*** .*X ', '.X. .XX$.*$.$$$...">10</a>
+	<a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/inertia.html#17x15:bmbmgggbgbwwbbbwswbmmwgbsmgmbgmgbbsmsSmbgmsgbbsmswbsgsbssbswswsbggsmmssmmggswsgwmsmgmgmbwwsbbggbbgmggmmswbwmbmmwmbwwwwssswssbsmwwsgswmgmmgbwmbssmwwbwsmgsmgwsbwgwsbmgsgmgmgmgmssbgbbswgsswssgwwwswggmmbsbgbswbbgbbmmggbmwgwmgmbmwwwmwsbgwggwgwmmwbsmwsgwgwbbwbs" title="15 rows, 17 columns: start=(2, 3) and grid=(' * *$$$ $ XX   X.', 'X **X$ .*$* $*$  ', '.*..* $*.$  .*.X ', '.$. .. .X....">11</a>
+	<a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/inertia.html#20x16:mmsmssmgwwmswbmswsmwmsgbbssmgswbsmgbbwgbwmgmgmbmbsgggbgbsggwmssmmgwgsmsswmwbbggbgssmwwmwwmgwbmbgssbbsgssggwsmwgmmbmgwswsmbsmbgbmmswgwsggmwwwswbbsgwsbwsbwmwwmsmmmsSswmwsgwwmggmmsbmbbbmgggbbbmmmsmmbbbbbbgmsgwssgbbmmsmwmsswwgwgbwbwgbsswwsgsbgmbwsbsmggmmswwgbmmmgbggwwbgbwgbssbgwbbwwwssbwwgwswbgwgbsbggsmbmbgswgbsggmwsbmggww" title="16 rows, 20 columns: start=(8, 2) and grid=('**.*..*$XX*.X *.X.*X', '*.$  ..*$.X .*$  X$ ', 'X*$*$* * .$$$ $ .$$X', '*...">12</a>
+	<a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/inertia.html#20x16:mwssmssggwgssggsbwssggmggbbmmbmgsgbswgswwsswsggbwmbwwbbgmssbwgmsmbgwmwssbmgmwgggbgmbgmmbmwggwsgmmgbsgwssbgwbgwmbmwsbbsbgswmbsmwbssbbmsbwsbwmgwgbbbmsgwmmsbsbSwmbgbssgwggssbswgwwbbbmsbggmbmwmsmsggmwmbgmgwsssggwwgsmbwsmwbmwssgmsbwswmwwmwgwbmwmgmgwmgbmwmwmmssbwgbmwbwsmwmmwwbwsmggswmbsgbssgbbwwmgwmwwbgwsbgmbmmgbbbgbsbmmwgss" title="16 rows, 20 columns: start=(7, 16) and grid=('*X..*..$$X$..$$. X..', '$$*$$  ** *$.$ .X$.X', 'X..X.$$ X* XX  $*.. ', '...">13</a>
+	<a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/inertia.html#20x16:mmwgmbwbmbwmbmmwgwmwswgbbwwwmgsbwswbgmgsmsbbsgswgbsgbbsbmsbgsmmgbbwbgmgsbswsmbssmbmgsswmgggbsmwgbgbwwmmgbmssssbwwmbbbmsmwbbgssgwmwmbwggbmgmgwmbwmwmgbmgwbmwgbsmwbggbmswsmwsbswggsgmgwgmgbssgbwgbgmggbmwbssmgbggsmswsgsmswsgwbmwwmswgswsssgbmsbgwmgbgwwswwbgsmwbssgbwwwwgSgsmmmmswswmsswsmgwsmgwsbwbwggssgwbgmgbbmsgmsmmbmbmbwbwb" title="16 rows, 20 columns: start=(13, 4) and grid=('**X$* X * X* **X$X*X', '.X$  XXX*$. X.X $*$.', '*.  .$.X$ .$  . *. $', '...">14</a>
+	<a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/inertia.html#20x16:sswgssbwsmwwswggsgmsmgwbgbwgsswbbmbbbsmbmbbwmgwwmsgbwwmsgbmwgwswgbwwbbwbwssmmsggsmmmgwmbmssbmbgbmgwgwbmgwgmbswmsbSgmbwmsbmggbbwmswssbwgssmsbwwwbggmwgsmgbsbbwwmmwsbwbbbssmbgsbgsbmbwmmmwbbsmbmmbswwmbmgggsmmgmmsgwsbbgwmwgswbwbmsbgmsgmwmmgbmsgsgsbgmwmwbgssgwmsmgmssgbgwwswgsgggwwbwwwwgsgwgsmbmbsbbgmgwgwsgssgsggsbwwmggmbsmsm" title="16 rows, 20 columns: start=(5, 13) and grid=('..X$.. X.*XX.X$$.$*.', '*$X $ X$..X  *   .* ', '*  X*$XX*.$ XX*.$ *X', '...">15</a>
+	<a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/inertia.html#30x20:wgsmggmgsmwggbmbbbmgsbgsgwwwbsgwwgbmbsmsgwbwsssggbsbbmbbwsmbsmswmwsgwsmsbsggsgsmmgwwgsgwwmbgwmbwbswbsmgbbmsmgggmsbssbwsmwwswgmbwswsggwgwmmwsgsmwgmbgwgsbgsmgbmgbbbgmswbsbwwgbmwswggwwmbwbsmwmswbsbwwswgswbsgmgsmssgmbbsbmsbwsgwgsbsmwsgbswsssmmggssggswmwbmwmssmgwsmmwwbwgmbggmmbgsgbmgwgmgmmsgmbgwggmgsssbggswsgsmbsmwgsmmgbbbmsmgsbbbmmmwmmwwbwgwbsgmssbgwmgwmgwgmwbmbgwswbgsswbwmmgbswbggbbbwwmmmmgsmwbmwsbwwmbsswwmmwsswbgssbmbbgmsswsgmwwssmbgsggmmwbwggSbsssgbmwmbggwmbbmgsssbmmwmbbbbwggmgmbbbwggwbggmbwmwmbbsmgbbbggwwsgssmgbgsswwmsbswwwbsswgmgsbbgwggwswmmwgwmmbbmsgmmwsbwwggbmmwbbwwwsbbmgbmmbsmbsmwbbwmswmgb" title="20 rows, 30 columns: start=(14, 25) and grid=('X$.*$$*$.*X$$ *   *$. $.$XXX .', '$XX$ * .*.$X X...$$ .  *  X.* ', '.*....">16</a>
+	<a href="https://www.chiark.greenend.org.uk/~sgtatham/puzzles/js/inertia.html#50x50:bsgwwmwsmmswmbmsbsbmmmmggswgssmmwgsssbwsgggbmmbbbsgbsbwbbbwwgwwbwwswwwgbswgssbmsssbmmbbmsbwbggwggswbwgmbwwbwgsgwwswggswgggbwsbwmmmsgbmssggwsbmgssgwmgbwswgwmgmssgmmmgwmbsgsswswbwbmwggmwbbgmsbsmmbmsmwmmgbwbwmwsgwmwwwsmmbbmwgbbgggsmwssbwgssswwgsgsbswwbmsbswgmggbwbmmggsmmmmsgbgmwgmsgmbgwgbbgsswsgbsbwsmmgbsmgsbwbgmsmwsmswbbbggbwggwsmbwsgbmsggmbgbsgbbwgbsgmgwbwmgmbbbgbmwwsmswmwggmgbbbmwwwwbbsgsggggsgwsgbwgbsbsmsgsbsmwwgbmggmgmbbmsbmbwssgsswbgbwmggggmwbgbsmssmwgmwbsmwswggmwgggsmgbmbsmwssmbbwgwbmmwsmwmbswwbssmggbwbggmgmwgsgwsbmwbwbbmwgwsmwgsgwwgwwsmwgmmwgwgwwmwgwwsbsbgwwgwwswwbggsmssmbggwswgbmmwswssmbsggswmmmwbmwsmgwbssbswmbwmssgbgwwwsbssmgmbwmmwsmbbmbmsssbbgswmwbwmwmgsgbmwbwmgwbwgssmmsgmwgbbmbsmgbmmbsbmwgbgbwmswgwbmwbmmwbgwgbmmgwbsgwbgssgbbbgwwggbmsmmbwwwsggmmmbbgsgssssgssmwbmwwsgbgssswbwgsbmmmsbwbsbgmgwwwgwbgmgwsbssgswgbgswmwbmgwmgwgwgbggbbwbmggswsgswgswsbbwgwbmbmgbsssbwwmmswwwbssmsggwgggsmmbwmmggggsmbmgmmgmbsbgwbgmggmgsgbgwmsgmsmmsmsbwbwsbwmwmbswggmmmwwsmbsswsgbwsbwwmwbbbgwgmbmbgmwbbsmgwgbgwsmwmbbmwsbwbsssmwmwbgmgsssggbbmbbgbmsbwmwbsgmggmsgbggsswsmgssbbgbggsgsgmgbwwbmsmwbwsssmgwmmwssbsbsssbgwsgggsmbgwgmgbwwwwgwwmwmwmbmggswmbbswmswsmbwgwmsggwggswbgwgbmsmggbmsggwsmwbwwgsmsgwgbwmwwsgmwssswbwwggmwsswbmgggwgmgwwgsgmbmwgsmwsgwbmgwgbmwmgwswmbbwgmwsbgmwmsmwmgbmmssmgmwggbmsbmssmbbwbwmsggmmsbbmwbsswggmssgmwswwssbmmsbssgmbmgbmmwbwmbbsgwswbssbmsmmmggbgsgmbsmgmgswgbmwwmwbbmsbmsgsbmggwmmmwwggbsmsbmbwsbsgmsbmsmsgsmmsggmwgwwsmbgbssbgbsmbgwbsgssgsgbwsgsssgbwmwwbgssmwmsmswsgsgbssbbgwwwmwgswswbmbmggmwbbmmgbsgbbmbwssbbmwssmbwgsswgwbbsbbgbggwwsswmssbwsbsbmbwbbgswbmsbmbsgsmsbwmgwwwmbsswwbgsgwsmsbgmbbbbmwgmmbgsgsmwbmgwmgsmwmwswwbwwbggmmmswwsmgwgwsggswgwbmbbwswwbmwgmmbswwmwmgsbsmbmswggbmbsbmwgwgsmmwsbgbmbbSwwbgwbmbsmwbwmwbwmbsgsgwbswgswsmsmmsssgsgmwwggmmmssgsmgbwmmbmwgbswbwbmgmswmwwwwgbmmgbgbswgmbmwgmgbmgsswbbmmsbsbmssmmwggmwwmmgbwbwbgswwsmmggbwbwmwbbgwgbmbbwsbbbbwbmmgbmsgmggbbmgswsgwmwbggsgwssgggwwgmgbbmmsmmmbmmwgsgssssgbsmgmsgsgbgmmsgsswwggsmwggbwgbgmmbbbsbmbbbmbmwgwsbwbmbsgmwbgsbgwmgwwswswgmbmsmbsggwsgmwmbbbgggbwsbmwggbswgwgwsmgsmbbgmbssmswmbbgsmgswwsmmbsgwwmwwbmmwwsgsbwggswbsbwbmwbmsmbsmwgbmbgmmbgmgswgwswbgmgbbbgmmmgswmbbmgsgbsbgbwbgbwbmsbmwbgwswsgswssgwsbmbmgbggbggggmbwgsmmmbwmbswbswmgsmmmwbwmmmbsgsmmbggssmsbsbwmwsbbgsbwbbmbmgswsggmswmwwsbgwsbmwbgwwwsgwbsgsssmmssswwbggmbbwggsgmbswggssbbsgwmgbwwbggmsbbsgbbmsmsbswwbsggwwbbmwsggsgswwbsgbwsgsmmsbgggswsmmswmmwmmgmwmwsbswgbmmmsgbbbsbsmwbmgswmsgsmsbwbswbsgbgsssswbmbmwsgmswbbwmsmswsmggmmbbmbbbmwsbgbbmbwmwbwwmmwsbbsmwbmwmbmsmbgmbssgbggwbm" title="50 rows, 50 columns: start=(34, 6) and grid=(' .$XX*X.**.X* *. . ****$$.X$..**X$... X.$$$ **   .', '$ . X   XX$XX XX.X...">17</a>
+</p>
+</div>
+
+<p>
+	<strong>Preconditions:</strong>
+	<ul>
+		<li>You can collect all gems in any possible order
+		(otherwise it would be far more difficult).</li>
+		<li>Given puzzles are solvable.</li>
+		<li>5 &le; len(grid) &le; 50 and 5 &le; len(grid[0]) &le; 50.</li>
+		<li>all(len(row) == len(grid[0]) for row in grid).</li>
+	</ul>
+</p>

@@ -1,0 +1,146 @@
+<div class="story">
+    <p> &quot;Wow! That was amazing!&quot; Stephen was greatly impressed. He took his eyes off the telescope and leaned back.</p>
+    <p> &quot;Did you see that?&quot; asked Sofia.</p>
+    <p> ...moments ago a super massive black hole had just &quot;swallowed&quot; another one...</p>
+    <p> &quot;You were right Sofia, that was an incredible event&quot; Stephen said. &quot;So, can I join your A&A (Astronomy & Astrophysics) research group?&quot; </p>
+    <p> Sofia looked at him triumphantly and said - &quot;Really, my plan was to rope you in anyway! We are currently researching black holes and their gravitational fields and we are looking for someone to help us create a software model that will predict the future state of black holes&quot;.</p>
+    <p> &quot;Hmm, it's very interesting. Let me try...&quot;.
+</div>
+<p>
+    You need to help Stephen implement a software model (function) that predicts the state of black holes under a controlled environment. The A&A research team has identified some peculiarities in the behavior of black holes.
+</p>
+<p>
+    To create the software model one should take into account:
+</p>
+<p>
+	1. The cartesian coordinate system is used to map out the black holes.<br>
+	2. Each black hole is represented as a circle with <i>x</i>, <i>y</i> (center coordinates) and <i>r</i> (radius).<br>
+	3. In contrast to the area, which may change during the absorption process, the coordinates remain constant.<br>
+	4. The area of a black hole greatly influences its mass, and consequently, the gravitational field.<br>
+	5. The absorption order of black holes depends on the distance between their centers, starting with the black holes that are closest to each other. If the distance between different black holes is equal, then the leftmost black hole in the list should merge first.<br>
+	6. The absorption process (merging) of black holes is possible <span style="text-decoration: underline">if and only if the following conditions are met</span>:<br>
+        &nbsp;&nbsp;&nbsp;- The intersection area of the two black holes is greater than or equal to 55% (>= 55%) of one of the two black holes area.<br>
+		&nbsp;&nbsp;&nbsp;- The area of one of the two black holes is over 20% (>= 20%) more than the area of the other.<br>
+	7. If one black hole absorbs another, their areas are summarized as (S<sub>total</sub> = S<sub>1</sub> + S<sub>2</sub>).<br>
+	8. The absorption process continues as long as all conditions are met (see p. 6).<br>
+</p>
+<p>
+    Let's look at some simple examples:
+</p>
+<div class="for_info_only" style="text-align: center">
+    <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
+	<tbody>
+		<tr style="text-align: center; font-size: 10pt">
+			<td>
+                Input: [(2, 4, 2), (3, 9, 3)]<br>
+                No intersection<br>
+                Output: [(2, 4, 2), (3, 9, 3)]<br><br><br><br>
+                <img title="first-example" src="https://py-static.checkio.org/media/task/media/a53394c2356743d499f647e19a03fd86/fiqure_1.png" alt="first-example" width="143"/>
+            </td>
+			<td>
+                Input: [(0, 0, 2), (-1, 1, 2)]<br>
+                S<sub>1</sub> = 12.57; S<sub>2</sub> = 12.57<br>
+                Intersection area = 7.03<br>
+                p<sub>1</sub> = 56% p<sub>2</sub> = 56%<br>
+                Domination: 0%<br>
+                Output: [(0, 0, 2), (-1, 1, 2)]<br>
+                <img title="first-example" src="https://py-static.checkio.org/media/task/media/a53394c2356743d499f647e19a03fd86/fiqure_2.png" alt="first-example" width="210"/>
+            </td>
+            <td>
+                Input: [(1, 3, 2), (1, 3, 2.19)]<br>
+                S<sub>1</sub> = 12.57; S<sub>2</sub> = 15.07<br>
+                Domination: 19.9%<br>
+                Output: [(1, 3, 2), (1, 3, 2.19)]<br><br><br>
+                <img title="first-example" src="https://py-static.checkio.org/media/task/media/a53394c2356743d499f647e19a03fd86/fiqure_3.png" alt="first-example" width="198"/>
+            </td>
+        </tr>
+	</tbody>
+    </table>
+</div>
+<p>
+    More complex example: [(2, 2, 3), (0, 4, 2), (4, 6, 2), (4.7, 3, 0.5)]
+</p>
+<div class="for_info_only">
+    <table border="0" cellpadding="0" cellspacing="0" style="width:100%; font-size: 10pt">
+	<tbody>
+        <tr style="text-align: center">
+			<td>
+                Steps
+            </td>
+            <td>
+                <i>Before</i>
+            </td>
+        </tr>
+		<tr style="text-align: center;">
+			<td>
+                Input: [(2, 2, 3), (0, 4, 2), (4, 6, 2), (4.7, 3, 0.5)]<br>
+                R1, R2 - distance (2.83); S<sub>1</sub> = 28.27; S<sub>2</sub> = 12.57<br>
+                Intersection area = 6.04<br>
+                p<sub>1</sub> = 21% p<sub>2</sub> = 48%<br>
+                Output: [(2, 2, 3), (0, 4, 2), (4, 6, 2), (4.7, 3, 0.5)]<br>
+                ----------------------------------------------------------<br>
+                Input: [(2, 2, 3), (0, 4, 2), (4, 6, 2), (4.7, 3, 0.5)]<br>
+                R1, R4 - distance (2.88); S<sub>1</sub> = 28.27; S<sub>4</sub> = 0.79<br>
+                Intersection area = 0.5<br>
+                p<sub>1</sub> = 2% p<sub>4</sub> = 63%<br>
+                Output: [(2, 2, 3.04), (0, 4, 2), (4, 6, 2)]<br>
+                ----------------------------------------------------------<br>
+                Input: [(2, 2, 3.04), (0, 4, 2), (4, 6, 2)]<br>
+                R1, R2 - distance (2.83); S<sub>1</sub> = 29.03; S<sub>2</sub> = 12.57<br>
+                Intersection area = 6.21<br>
+                p<sub>1</sub> = 21% p<sub>4</sub> = 49%<br>
+                Output: [(2, 2, 3.04), (0, 4, 2), (4, 6, 2)]<br>
+                ----------------------------------------------------------<br>
+                Input: [(2, 2, 3.04), (0, 4, 2), (4, 6, 2)]<br>
+                R1, R3 - distance (4.47); S<sub>1</sub> = 29.03; S<sub>2</sub> = 12.57<br>
+                Intersection area = 0.87<br>
+                p<sub>1</sub> = 3% p<sub>4</sub> = 7%<br>
+                Output: [(2, 2, 3.04), (0, 4, 2), (4, 6, 2)]<br>
+                ----------------------------------------------------------<br>
+                Input: [(2, 2, 3.04), (0, 4, 2), (4, 6, 2)]<br>
+                R2, R3 - distance (4.47)<br>
+                S<sub>1</sub> = 12.57; S<sub>2</sub> = 12.57<br>
+                No intersection<br>
+                ----------------------------------------------------------<br>
+                Output: [(2, 2, 3.04), (0, 4, 2), (4, 6, 2)]<br>
+            </td>
+            <td>
+                <img title="first-example" src="https://py-static.checkio.org/media/task/media/a53394c2356743d499f647e19a03fd86/fiqure_4.png" alt="first-example" width="240"/><br>
+                <i>After</i><br>
+                <img title="first-example" src="https://py-static.checkio.org/media/task/media/a53394c2356743d499f647e19a03fd86/fiqure_5.png" alt="first-example" width="240"/>
+            </td>
+        </tr>
+	</tbody>
+    </table>
+</div>
+<br>
+<p>
+    <strong>Input: </strong> A list of tuples [(x, y, r), ..., ...], where x, y - coordinates, r - radius of a black hole
+</p>
+
+<p>
+    <strong>Output: </strong> Predictable (final) state of black holes as a list/tuple of lists/tuples, radius should be given with two digits precision as &plusmn;0.01.
+</p>
+
+<div class="for_info_only">
+    <p>
+        <strong>Example:</strong>
+    </p>
+    <textarea data-code="python">
+checkio([(0, 0, 2.1)]) == [(0, 0, 2.1)]
+checkio([(2, 4, 2), (3, 9, 3)]) == [(2, 4, 2), (3, 9, 3)]
+checkio([(3, 3, 3), (2, 2, 1), (3, 5, 1.5)]) == [(3, 3, 3.5)]</textarea>
+</div>
+
+<p class="for_info_only">
+    <strong>How it is used: </strong>
+    <i>
+        You can use this in game development (see <a href="https://en.wikipedia.org/wiki/Agar.io" title="Agar.io wiki">Agar.io</a> example), studying geometry or developing software models of real physical processes.
+    </i>
+</p>
+<p>
+    <strong>Precondition:</strong>
+    1 &le; len(data) &le; 20<br>
+    0.5 &le; radius &le; 10<br>
+    x &isin; [-100; 100], y &isin; [-100; 100]<br>
+</p>

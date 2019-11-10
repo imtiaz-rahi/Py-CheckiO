@@ -1,0 +1,21 @@
+
+<p>
+    This is pretty much a technical mission.
+</p>
+
+<p>
+You have raw <a href="https://en.wikipedia.org/wiki/HTTP_cookie" target="_blank">HTTP cookies</a>. Your mission is to extract the value of a specific cookie by its name.
+</p>
+
+<p><strong>Input: </strong> Two arguments. Both are strings. The first one is the string of raw cookies, and the second one is the name of the cookie we are looking for.</p>
+
+<p><strong>Output: </strong>A string. Extracted value.</p>
+
+<div class="for_info_only">
+    <p><strong>Example:</strong></p>
+<pre class="brush: python">
+get_cookie('theme=light; sessionToken=abc123', 'theme') == 'light'
+get_cookie('_ga=GA1.2.447610749.1465220820; _gat=1; ffo=true', 'ffo') == 'true'
+</pre>
+</div>
+<br />

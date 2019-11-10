@@ -1,0 +1,60 @@
+<img class="for_info_only" title="horse" src="https://py-static.checkio.org/media/task/media/f2115884aede4e51b35d5157a6352435/horse.png" alt="horse"
+     style="width: 300px;float: left; margin-top: 0px; "/>
+
+
+<p>
+    For language training our Robots want to learn about suffixes.
+</p>
+
+<p>
+    In this task, you are given a set of words in lower case.
+    Check whether there is a pair of words, such that one word is the end of another (a suffix of another).
+    For example: {"hi", "hello", "lo"} -- "lo" is the end of "hello", so the result is True.
+</p>
+
+<p>
+    <strong>Input: </strong> Words as a set of strings.
+</p>
+
+<p>
+    <strong>Output: </strong> True or False, as a boolean.
+</p>
+
+
+<div class="for_info_only">
+    <p>
+        <strong>Example:</strong>
+    </p>
+    <pre class="brush: python">
+
+    </pre>
+    
+<pre class="brush: python">checkio({"hello", "lo", "he"}) == True
+checkio({"hello", "la", "hellow", "cow"}) == False
+checkio({"walk", "duckwalk"}) == True
+checkio({"one"}) == False
+checkio({"helicopter", "li", "he"}) == False
+</pre>
+
+</div>
+
+<p class="for_info_only">
+    <strong>How it is used: </strong>
+    Here you can learn about iterating through set type and string data type functions.
+</p>
+
+
+<p>
+    <strong>Precondition: </strong>
+    2 &le; len(words) &lt; 30<br>
+    all(re.match(r"\A[a-z]{1,99}\Z", w) for w in words)
+</p>
+
+
+<div class="facts for_info_only">
+    <p>
+        Each player can create their own missions on CheckiO starting at level 9. You have the ability to create
+        challenges for your friends and maybe even get your mission published on CheckiO for the whole community!
+    </p>
+</div>
+

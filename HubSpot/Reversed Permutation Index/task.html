@@ -1,0 +1,60 @@
+<p>
+    This mission is the inverse function of <a href="https://py.checkio.org/en/mission/permutation-index/">Permutation Index</a>.
+    (The mission idea is by <a href="https://py.checkio.org/user/przemyslaw.daniel/">przemyslaw.daniel</a>.)
+</p>
+
+<p>You are given the length of the permutation (an integer) and the permutation index (an integer starting from 1).
+    The task is to calculate one of the permutations of the consecutive integers (starting from 0) and return it
+    (an iterable of integers).
+</p>
+<p><strong>For example</strong></p>
+<ul>
+    <li>Input: 3, 4</li>
+    <ul>
+        <li>All consecutive permutations are:</li>
+        <ol>
+            <li>(0, 1, 2)</li>
+            <li>(0, 2, 1)</li>
+            <li>(1, 0, 2)</li>
+            <li>(1, 2, 0) !!!</li>
+            <li>(2, 0, 1)</li>
+            <li>(2, 1, 0)</li>
+        </ol>
+    </ul>
+    <li>Output: (1, 2, 0)</li>
+</ul>
+
+
+<div class="for_info_only">
+    <p>
+        <strong>Example:</strong>
+    </p>
+<!-- Do NOT change the indentation of this pre-block -->
+<pre class="brush: python">assert tuple(reversed_permutation_index(3, 5)) == (2, 0, 1)
+assert tuple(reversed_permutation_index(6, 271)) == (2, 1, 3, 0, 4, 5)
+</pre>
+<!-- pre-block end -->
+</div>
+
+<p>
+    <strong>Input: </strong>
+    The length of the permutation (an integer) and the permutation index (an integer).
+</p>
+
+<p>
+    <strong>Output: </strong>
+    One of the permutations (an iterable of integers).
+</p>
+
+<p>
+    <strong>Precondition:</strong>
+</p>
+<ul>
+    <li>1 &le; length</li>
+    <li>1 &le; permutation_index &le; math.factorial(length)</li>
+</ul>
+<!--
+<p>
+    <strong>How it is used:</strong>
+</p>
+-->

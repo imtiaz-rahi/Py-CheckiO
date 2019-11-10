@@ -1,0 +1,64 @@
+<p>
+  You have an elevation map and you want to know the shortest climbing route. 
+</p> 
+<p>
+The map is given as a list of strings.
+</p>
+
+<ul>
+    <li>0 : plain ( elevation is 0)</li>
+    <li>1-9 : hill (number is elevation)</li>
+</ul>
+<p>"mountain" is adjacent (only 4 directions) hill group.</p>
+<ul>
+    <li>It consists of two or more hills.</li>
+    <li>Isolated hill is not mountain.</li>
+    <li>The highest elevation is the mountaintop that is always only one.</li>
+</ul>
+<p>
+Start is top-left. Goal is bottom-right. You have to go over all the mountaintops.  You can only move vertical and horizontal. And you can only move to the same or one elevation difference. You should look for the shortest route and return Number of steps. (if mountains do not exist, You may go to the goal at the shortest from the start.)</p>
+
+<p style="text-align: center;">
+    <img  title="example" src="https://py-static.checkio.org/media/task/media/adcbe88af180466da904ed1813bba4c0/example.png" alt="example" style="max-height: 244px"/>
+</p>
+
+<p>
+    <strong>Input: </strong> A elevation map as a list of strings. 
+</p>
+
+<p>
+    <strong>Output: </strong> number of steps as Integer. 
+</p>
+
+
+
+<div class="for_info_only">
+    <p>
+        <strong>Example:</strong>
+    </p>
+<pre class="brush: python">
+climbingRoute(['000',
+               '120',
+               '000']) == 6
+
+climbingRoute(['000000002110',
+               '011100002310',
+               '012100002220',
+               '011100000000']) == 26
+</pre>
+</div>
+
+<p class="for_info_only">
+    <strong>How it is used: </strong>
+    Geographic analysis, Game map design and so on.
+</p>
+
+<p>
+    <strong>Precondition:</strong><br>
+    <ul>
+        <li>elevation_map[0][0] == elevation_map[-1][-1] == '0'</li>
+        <li>3 &le; len(elevation_map)</li>
+        <li>all(3 &le; len(row) and len(row) == len(elevation_map[0]) for row in elevation_map)</li>
+        <li>There is no mountain that can't climb.</li>
+    </ul>
+</p>

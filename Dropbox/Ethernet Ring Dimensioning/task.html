@@ -1,0 +1,137 @@
+<p>
+    A ring topology is a network configuration where the devices are connected to each other in a circular shape.
+    Optical rings are widely used in mobile networks to transport the traffic from a base station to the backbone, through the mobile backhaul.
+</p>
+    
+<p style="text-align: center;">
+    <img class="for_info_only"
+         title="ITU backhaul with rings"
+         src="https://py-static.checkio.org/media/task/media/0ccddd4f08fb446c822a241ebcddaa24/ring-itu.png"
+         alt="ITU backhaul with rings"
+         width="700px"/>
+</p>
+
+<h3><u>Definition of a ring</u></h3><br>
+<p>
+    For the sake of simplicity, in this task, we define a ring as a connex graph which vertexes:
+	<ol>
+		<li style="padding-top: 0px; padding-left: 10%; width: 80%;">- have a degree <strong>2</strong>, which means they have <strong>2</strong> incident edges.</li>
+		<li style="padding-left: 10%; width: 80%;">- are connected to two distinct vertexes</li>
+	</ol><br>
+    These two conditions ensure that there is a single link between each pair of adjacent nodes. 
+    Ring are represented as a string made of distinct characters, <strong>which position in the string reflects the position in the ring.</strong>
+    For instance, the ring <strong>"AEFCBG"</strong> defines the following topology:
+</p>
+
+<p style="text-align: center;">
+    <img class="for_info_only"
+         title="ring definition"
+         src="https://py-static.checkio.org/media/task/media/0ccddd4f08fb446c822a241ebcddaa24/ring-def.PNG"
+         alt="ring definition"
+         width="500px"/>
+</p>
+<h3><u>Shortest path asymmetric routing</u></h3><br>
+<p>
+    Multiple traffic flows will be routed on the ring. <br>
+    Each flow is routed on the <strong>shortest path</strong> from the <strong>ingress node</strong> (starting point of the traffic) to the <strong>egress node</strong> (exit point of the traffic).<br> If there are two shortest paths, <strong>the path which order fits the ring definition is kept</strong>.<br>
+    Let's consider the following situation:<br>
+</p>
+
+<p style="text-align: center;">
+    <img class="for_info_only"
+         title="paths along the ring"
+         src="https://py-static.checkio.org/media/task/media/0ccddd4f08fb446c822a241ebcddaa24/ring-paths.PNG"
+         alt="paths along the ring"
+         width="600px"/>
+</p>
+
+<p>
+    The path from <strong>A</strong> to <strong>B</strong> (and from <strong>B</strong> to <strong>A</strong>) will be <strong>"A - G - B"</strong>, because it uses only two links, while the path going the other way around <strong>("A - E - F - C - B")</strong> uses five links.<br>
+    However, there are two paths of equal length to route a traffic from <strong>A</strong> to <strong>C</strong>: <strong>"A - E - F - C"</strong> and <strong>"A - G - B - C"</strong>. The first one, <strong>"A - E - F - C"</strong>, is kept: it is the <strong>same order</strong> as in the ring definition (<strong>"AEFCBG"</strong>).<br>
+    The traffic from <strong>C</strong> to <strong>A</strong> will use the path <strong>"C - B - G - A"</strong>: the routing is asymmetric in that case.<br>
+</p>
+<h3><u>Flow aggregation</u></h3><br>
+<p>
+    A traffic flow is represented as a couple <strong>(s, dr)</strong> where: 
+	<ol>
+		<li style="padding-top: 0px; padding-left: 10%; width: 80%;">- <strong>s</strong> is a string of length 2, containing the <strong>ingress node</strong> and the <strong>egress node</strong>.</li>
+		<li style="padding-left: 10%; width: 80%;">- <strong>dr</strong> is the data rate in <strong>Gbps</strong> (gigabit per second).</li>
+	</ol><br>
+    The data rate of a traffic flow will be counted for all the links of the shortest path.<br> A traffic flow <strong>("AB", 5)</strong> means that 5 Gbps will be routed on the shortest path from <strong>A</strong> to <strong>B</strong>. <br>
+    We count 5 Gbps on the link <strong>"AG"</strong> and 5 Gbps on the link <strong>"GB"</strong>. For a traffic flow <strong>("CA", 15)</strong>, we count 15 Gbps on the links <strong>"CB"</strong>, <strong>"BG"</strong>, and <strong>"GA"</strong>.<br>
+    In order to simplify the model, we consider that the traffic flows <strong>ingress -> egress</strong> and <strong>egress -> ingress</strong> are equivalent with regard to dimensioning.<br>
+    Two traffic flows <strong>("AG", 3)</strong> and <strong>("GA", 3)</strong> induce a 6-Gbps flow on the link <strong>AG</strong>, as would <strong>("AG", 6)</strong> or <strong>("GA", 6)</strong>: links are not <strong>directional</strong>. 
+    
+    Given a list of traffic flows, we consider the resulting bandwidth on each link to dimension the ring.<br>
+</p>
+
+<h3><u>Ethernet links dimensioning</u></h3><br>
+<p>
+    There are five main types of Ethernet links used in mobile networks:
+	<ol>
+		<li style="padding-top: 0px; padding-left: 10%; width: 80%;">- <strong>Fast Ethernet</strong> (FE): 100 Mbps (or 0.1 Gbps) </li>
+		<li style="padding-left: 10%; width: 80%;">- <strong>Gigabit Ethernet</strong> (GE): 1 Gbps.</li>
+		<li style="padding-left: 10%; width: 80%;">- <strong>10 Gigabit Ethernet</strong> (10GE): 10 Gbps </li>
+		<li style="padding-left: 10%; width: 80%;">- <strong>40 Gigabit Ethernet</strong> (40GE): 40 Gbps.</li>
+		<li style="padding-left: 10%; width: 80%;">- <strong>100 Gigabit Ethernet</strong> (100GE): 100 Gbps.</li>
+	</ol><br>
+    In order to select a type of link, we look for the <strong>smallest bandwidth allowing to carry the whole traffic with a single link</strong>.
+    Handling a <strong>5-Gbps traffic</strong> would require 50 FE links, 5 GE links, or 1 10GE link. Therefore, a <strong>10GE Ethernet link</strong> is used.
+    For a <strong>15-Gbps traffic</strong>, a <strong>40GE Ethernet link</strong> is required. For a traffic <strong>higher than 100 Gbps</strong>, <strong>100GE Ethenet links</strong> are used (2 100GE Ethernet links for a 101-Gbps flow).<br>
+</p>
+<p>
+    Given a ring and a list of traffic flows, you should return the number of Ethernet links of each type that are required to carry the resulting bandwidth:<br>
+</p>
+
+<p style="text-align: center;">
+    <img class="for_info_only"
+         title="resulting dimensioning"
+         src="https://py-static.checkio.org/media/task/media/0ccddd4f08fb446c822a241ebcddaa24/dimensioning.PNG"
+         alt="resulting dimensioning"
+         width="700px"/>
+</p>
+
+<br>
+<p>
+    In this example, we have 10 Gbps from <strong>E</strong> to <strong>C</strong>, 5 Gbps from <strong>A</strong> to <strong>C</strong> and 60 Gbps from <strong>A</strong> to <strong>B</strong>.<br>
+    These traffic flows induce the following bandwidth: 15 Gbps from <strong>E</strong> to <strong>C</strong>, 5 Gbps from <strong>A</strong> to <strong>E</strong> and 60 Gbps from <strong>A</strong> to <strong>B</strong>.<br>
+    The link dimensioning results in 2 100GE, 2 40GE and 1 10GE Ethernet links.<br>
+</p>
+
+<p>
+    The result is given as a list containing the number of links for each category, from 100GE to FE.
+    In our example, the result is <strong>[2, 2, 1, 0, 0]</strong>
+</p>
+
+<p>
+    <strong>Input: </strong> A variable number of arguments. The first one is a ring, represented as a string where each character is a node.
+    The remaining arguments are traffic flows, represented as couples <strong>(s, dr)</strong> where <strong>s</strong> is a 2-characters string (ingress node, egress node) and <strong>dr</strong> is a positive value (traffic in Gbps).
+</p>
+
+<p>
+    <strong>Output: </strong> A list with 5 integers, one per type of link, in <strong>decreasing order of bandwidth capacity</strong>. 
+</p>
+
+
+<div class="for_info_only">
+    <p>
+        <strong>Example:</strong>
+    </p>
+    <pre class="brush: python">
+checkio("AEFCBG", ("AC", 5), ("EC", 10), ("AB", 60)) == [2, 2, 1, 0, 0]
+checkio("ABCDEFGH", ("AD", 4)) == [0, 0, 3, 0, 0]
+checkio("ABCDEFGH", ("AD", 4), ("EA", 41)) == [4, 0, 3, 0, 0]</pre>
+</div>
+
+<p class="for_info_only">
+    <strong>How it is used: </strong>
+    Links dimensioning is used for network planning and design.
+    For real networks, various softwares are used to dimension the network based on the expected traffic load (for pre-sales engineers, when the network does not yet exist), or traffic measurements (for post-sales engineers to compute how much traffic the network can handle, and plan the network evolution). <br>
+    However, real-life network dimensioning is much more complex than what is described in this task, as it deals with traffic differentiation and protection against equipment failure.
+</p>
+
+<p>
+    <strong>Preconditions:</strong><br>
+    The ring is a valid ring (connex, 2-degree nodes).<br>
+    The traffic is a positive value (integer or float).<br>
+</p>

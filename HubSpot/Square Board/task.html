@@ -1,0 +1,67 @@
+<p>
+You are designing a board game
+in which tokens move around the square board with. 
+(like in <a href='https://en.wikipedia.org/wiki/Monopoly_(game)'>Monopoly (Wikipedia)</a>)
+</p>
+
+<p>
+You need to write the function that returns the coordinates after the token has moved. The coordinates of a token are being represented by a tuple consisting of a row and column. The coordinates of a top-left one - (0, 0).
+</p>
+
+<ul style="line-height: 1.5em;">
+You are given three arguments: 
+<li>the first one is the length of the game board’s side (an integer);</li>
+<li>the second is the token’s current position (an integer);</li>
+<p>Cells around the board are numbered clockwise starting with 0 on the bottom right corner.</p>
+<li>the third is the number of steps to advance (an integer);</li>
+<p>A positive number represents a clockwise direction. A negative number represents  a counterclockwise direction.</p>
+</ul>
+
+
+<div class="for_info_only">
+    <p><strong>Example:</strong></p>
+
+<pre class="brush: python">
+square_board(4, 1, 4) == (1, 0)
+square_board(6, 2, -3) == (4, 5)
+</pre>
+
+</pre>
+
+<table>
+    <!--
+    <thead><tr>
+            <th>square_board(4, 1, 4) == (1, 0)</th>
+            <th>square_board(6, 2, -3) == (4, 5)</th>
+        </tr></thead>
+    -->
+    <tbody><tr>
+            <td style='padding: 15px;'><img  title="example01" src="https://py-static.checkio.org/media/task/media/280f7350e65642479f5957fb47b25bc3/tests_example_01.png" alt="example" style="max-height: 269px"/></td>
+            <td><img  title="example02" src="https://py-static.checkio.org/media/task/media/280f7350e65642479f5957fb47b25bc3/tests_example_02.png" alt="example" style="max-height: 269px"/></td>
+        </tr></tbody>
+</table>
+</div>
+
+<p><strong>Input: </strong>
+
+3 arguments: the length of the game board’s side (an integer), token’s current position (an integer), and the number of steps to advance (an integer).
+
+
+</p>
+
+<p><strong>Output: </strong>The coordinates after the token has moved (a tuple consisting of a row and column).
+</p>
+
+
+<p>
+<strong>How it is used:</strong><br>
+To get the coordinates of an object that moves around.
+</p>
+
+<p>
+<strong>Precondition:</strong><br>
+<ul>
+    <li>3 &le; The length of the side &le; 11</li>
+    <li>0 &le; The position of the token &lt; (side-1)*4</li>
+</ul>
+</p>

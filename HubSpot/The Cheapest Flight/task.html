@@ -1,0 +1,55 @@
+<!-- Describe task in general -->
+
+<p><i>"We need to fly home as cheaply as possible so that more money is left for gifts. Aunt Lidia asked for different kinds of cheeses, and Vasya wanted a new toy car. I’ve been looking at the schedule for quite a while and I’m starting to think that some planes are flying in vain".</i></p>
+
+<p>As the input you get the flight schedule as an array, each element of which is the price of a direct flight between 2 cities (an array of 3 elements - 2 city names as a string, and a flight price).</p>
+
+<p>Planes fly in both directions and the price in both directions is the same. There is a possibility that there are no direct flights between cities.</p>
+
+<p>Find the price of the cheapest flight between cities that are given as the 2nd and 3rd arguments.</p>
+
+<!-- Explain input and output values -->
+<p>
+    <strong>Input: </strong> 3 arguments: the flight schedule as an array of arrays, city of departure and destination city.
+ </p>
+
+<p>
+    <strong>Output: </strong> Int. The best price.
+</p>
+
+
+<!-- Put some usage examples -->
+<div class="for_info_only">
+    <p>
+        <strong>Example:</strong>
+    </p>
+
+
+<pre class="brush: python">cheapest_flight([['A', 'C', 100],
+  ['A', 'B', 20],
+  ['B', 'C', 50]],
+ 'A',
+ 'C') == 70
+cheapest_flight([['A', 'C', 100],
+  ['A', 'B', 20],
+  ['B', 'C', 50]],
+ 'C',
+ 'A') == 70
+</pre>
+
+</div>
+<!-- Here you can explain how it can be used in development. -->
+<!-- The section is optional -->
+<p class="for_info_only">
+
+    <strong>How it can be used: </strong>
+    <i>In everyday life to find the optimal combination.</i>
+</p>
+
+<!-- Here you can explain some constraints for input-->
+<!-- The section is optional -->
+<p>
+    <strong>Precondition:</strong>
+    <i>Price is always int. The flight schedule contains at least one element. Both cities are in the schedule.</i>
+</p>
+

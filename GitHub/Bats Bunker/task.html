@@ -1,0 +1,91 @@
+<p>
+    While searching for an adventure on the island, our robotic trio found a creepy old bunker. 
+    In the bunker, someone has hidden a rare and powerful computer chip which the robots hope to install on their spaceship.
+    Our adventurous heroes have tried to search for this chip, but the bunker is occupied by robo-bats and the Alpha Bat appears to be in possession of the chip.
+    In order to obtain the chip, the robots must capture Alpha Bat. 
+    This is no easy feat though; the bunker is filled with bat scouts which will alert the others if they spot intruders.
+    If we want to catch the Alpha Bat, we will need to know the amount of time it takes for the alert sent by the scout near the entrance to reach the Alpha Bat.
+</p>
+
+<p>
+    We have the advantage that the bunker's walls do not reflect sound, so the alert signals can extend only in a straight line.
+    The time it takes an alert to move between two bats is proportional to the Euclidean distance between cell centers (see the illustration).
+    The time for the alert to travel between neighbouring cells is <strong>1 second</strong>.
+    Alert "lines" cannot pass through walls or around corners.
+
+</p>
+
+<p>
+    You are given the map of bunker as a list of strings:<br>
+    "-" is an empty cell<br>
+    "W" is a wall<br>
+    "B" is a bat <br>
+    "A" is the Alpha Bat <br>
+    The entrance is placed at top left cell and there's always a bat right there (be careful, the Alpha bat can be here too).
+</p>
+
+<p>
+    You should calculate the minimal possible time for the alert to reach the leader with a precision of two digits (&plusmn;0.01).
+</p>
+
+<p style="text-align: center;">
+    <img class="for_info_only" title="bats-bunker" src="https://py-static.checkio.org/media/task/media/49c199b28a5147c1bcc15a4e827cee53/bats-bunker.png" alt="bats-bunker" width="600px"/>
+    <img class="for_editor_only" title="bats-bunker" src="https://py-static.checkio.org/media/task/media/49c199b28a5147c1bcc15a4e827cee53/bats-bunker.png" alt="bats-bunker" width="380px"/>
+</p>
+
+<p>
+    <strong>Input: </strong> A map of the bunker as a list of strings.
+</p>
+
+<p>
+    <strong>Output: </strong> The minimal possible time with a precision of two digits as a float.
+</p>
+
+
+
+<div class="for_info_only">
+    <p>
+        <strong>Example:</strong>
+    </p>
+    <pre class="brush: python">checkio([
+    "B--",
+    "---",
+    "--A"]) == 2.83
+checkio([
+    "B-B",
+    "BW-",
+    "-BA"]) == 4
+checkio([
+    "BWB--B",
+    "-W-WW-",
+    "B-BWAB"]) == 12
+checkio([
+    "B---B-",
+    "-WWW-B",
+    "-WA--B",
+    "-W-B--",
+    "-WWW-B",
+    "B-BWB-"]) == 9.24</pre>
+</div>
+
+<p class="for_info_only">
+    <strong>How it is used: </strong>
+    This task is a tricky search problem.
+    It teaches you how to build a graph and determine the line of visibility for the Bats.
+    These concepts can help develop security in the form of CCTV placement, process lighting and even add search and discover algorithms to in game AI.
+
+</p>
+
+
+<p>
+    <strong>Precondition:</strong><br>
+    3 &le; len(bunker) &le; 7<br>
+    all(3 &le; len(row) &le; 7 and len(row) == len(bunker[0]) for row in bunker)<br>
+    bunker[0][0] == "B" or bunker[0][0] == "A"<br>
+    The Alpha bat can be only one. <br>
+    Path from left corner to Alpha Bet always exists.
+</p>
+
+<p class="for_info_only">
+    <iframe width="640" height="360" src="//www.youtube.com/embed/Vb0i4qor0q0" frameborder="0" allowfullscreen></iframe>
+</p>

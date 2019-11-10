@@ -1,0 +1,36 @@
+
+<p>
+Metal strips, pipes, rods, etc. are being delivered in lengths of 6000 millimeters (6 meters). We want to cut them into pieces of different lengths.
+</p>
+
+<p>
+Write a piece of code that finds how to do this in the most efficient way, that is, with the least possible quantity of material wasted. You are given the requested pipe lengths (as a list of integers). You should find the most efficient way of cutting, and return the sum of the wasted pipe length. 
+</p>
+
+<p><strong>Input: </strong> A 'BOM' (Bill Of Materials), a list of lengths in millimeters that have to be cut (list of integer).
+</p>
+
+<p><strong>Output: </strong>The sum of wasted pipe length (Integer).
+</p>
+
+<div class="for_info_only">
+    <p>
+        <strong>Example:</strong>
+    </p>
+<pre class="brush: python">
+most_efficient_cutting([3000, 2200, 2000, 1800, 1600, 1300]) == 100
+most_efficient_cutting([4000, 4000, 4000]) == 6000
+</pre>
+
+<p>
+<strong>How it is used:</strong><br>
+To find the most efficient way of using the given resources.
+</p>
+
+<p>
+<strong>Precondition:</strong><br>
+all(1 <= b <= 6000 for b in bom)
+</p>
+<ul>
+</ul>
+</div>

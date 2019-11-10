@@ -1,0 +1,53 @@
+<p>
+    Every Christmas in my family, each of us gives a present to only one other person.
+    To organize who should offer a gift to whom (I call it the chain of presents),
+    we introduced a few rules:</p>
+<p>
+    - There should be a single chain where every person in the family is present,<br>
+    - Couples should not give to one another,<br>
+    - Every person should give a gift to a different person than they had in previous years
+</p>
+<p>
+    So the problem would be to find and list the longest list of chains of presents.
+    For example in a family {a,b,c,d} with couples=({a,b},{c,d}): [[a,c,b,d],[a,d,b,c]].
+</p>
+
+<p>
+    You are given a set of family member names and a list of couples in this family.
+    Find the maximum number of chains with all family members.
+    Gift chains should be represented as a list of names where <b>i</b>-th gives a
+    present to <b>i+1</b>-th and the last person in the list to the first.
+</p>
+
+<p>
+    <strong>Input: </strong> Names of family members as a set of strings.
+    Couple list as a tuple of sets with two strings in each.
+</p>
+
+<p>
+    <strong>Output: </strong> The longest list of gift chains as a list/tuple of
+    lists/tuples with strings.
+</p>
+
+
+<div class="for_info_only">
+    <p>
+        <strong>Example:</strong>
+    </p>
+<textarea data-code="python">
+find_chains({'Gary', 'Jeanette', 'Hollie'}, ({'Gary', 'Jeanette'},)) # 0 chains
+find_chains({'Curtis', 'Lee', 'Rachel', 'Javier'}, ({'Rachel', 'Javier'}, {'Curtis', 'Lee'})) # 2 chains
+</textarea>
+</div>
+
+<p class="for_info_only">
+    <strong>How it is used: </strong>
+    This is a combinatorial task that can be useful for scheduling.
+</p>
+
+<p>
+    <strong>Precondition:</strong>
+</p>
+<pre>
+len(couples) <= 7
+</pre>

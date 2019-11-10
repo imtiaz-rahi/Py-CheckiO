@@ -1,0 +1,131 @@
+<style>
+    table.matrix {
+    border-left: solid; border-right: solid; font-weight: bold;
+    margin: 10px
+    }
+    table.matrix td{
+    padding: 2px;
+        text-align: center;
+    }
+
+</style>
+<p>
+    While exploring the island, Sofia found an interesting Amulet.
+    Along the perimeter of the amulet small points are marked on each degree (for a total 360 degrees.)
+    Three levers extrude from the amulet with varying lengths. 
+    The first lever is the shortest, the second lever is in the middle of the three and the last is the longest.
+    These levers can be rotated, but if you rotate one lever the others rotate as well.
+    The levers rotate discretely by degrees, rotating them clockwise gives you a positive angle while counterclockwise is negative.
+</p>
+
+<div>
+    After some experiments Sophie discovers the levers correlation. If you rotate a lever, the other rotates in the same direction but with different speed.<br>
+    If you rotate the first, then the second is rotated <strong>f<sub>2</sub></strong> times faster, the third -- at the <strong>f<sub>3</sub></strong>time faster.<br>
+    If you rotate the second, then the third is rotated <strong>s<sub>3</sub></strong> times faster, the first -- at the <strong>s<sub>1</sub></strong> time faster.<br>
+    If you rotate the third, then the first is rotated <strong>t<sub>1</sub></strong> times faster, the second -- at the <strong>t<sub>2</sub></strong> time faster.<br>
+    This correlation can be represented as a matrix 3x3 with <strong>1</strong> in the main diagonal.<br>
+    <table class="matrix">
+    <tr>
+        <td>1</td>
+        <td>f<sub>2</sub></td>
+        <td>f<sub>3</sub></td>
+    </tr>
+    <tr>
+        <td>s<sub>1</sub></td>
+        <td>1</td>
+        <td>s<sub>3</sub></td>
+    </tr>
+    <tr>
+        <td>t<sub>1</sub></td>
+        <td>t<sub>2</sub></td>
+        <td>1</td>
+    </tr>
+
+    </table>
+</div>
+
+<div>
+    For example, the rotating correlation is given as the matrix:
+    <table  class="matrix">
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>1</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>3</td>
+        <td>1</td>
+    </tr>
+
+    </table>
+    This means that:<br>
+    If you rotate the first, the second is rotated at double the angle while the third rotates at triple.<br>
+    If you rotate the second, the third is rotated at double the angle, and the first rotates at triple.<br>
+    If you rotate the third, the first is rotated at double the angle, and the second rotates at triple.<br>
+    For example: You rotate the first lever at +10 degrees.
+    As a result, the second is rotated at +20 degrees and the third at +30 degrees.
+</div>
+
+<p>
+    You can rotate the levers from -180 to +180 degrees only (but in interrelated mode it can be rotated more than 360 degrees).
+    You can rotate each lever once in the following order: the first, the second, the third.
+    Sophie used her X-ray vision and found out what position each lever should be in. 
+    After completing these rotations, the levers must be at <strong>0, 225, 315</strong>.
+
+</p>
+
+<p>
+    You are given a rotation matrix as a list of lists with positive integers and the unitary main diagonal.
+    You should return a list of three integers -- the angles for each lever.
+    The start position of the levers is [0, 0, 0].
+</p>
+
+<p style="text-align: center;">
+    <img class="for_info_only" title="amulet" src="https://py-static.checkio.org/media/task/media/03fb6d81d5944c96ac8d2ea41cde5e64/amulet.png" alt="amulet" width="600px"/>
+    <img class="for_editor_only" title="amulet" src="https://py-static.checkio.org/media/task/media/03fb6d81d5944c96ac8d2ea41cde5e64/amulet.png" alt="amulet" width="380px"/>
+</p>
+
+<p>
+    <strong>Input: </strong> A rotation matrix as a list of lists.
+</p>
+
+<p>
+    <strong>Output: </strong> The angles as a list of integers.
+</p>
+
+
+<div class="for_info_only">
+    <p>
+        <strong>Example:</strong>
+    </p>
+    <pre class="brush: python">
+checkio([
+    [1, 2, 3],
+    [3, 1, 2],
+    [2, 3, 1]])
+checkio([
+    [1, 4, 2],
+    [2, 1, 2],
+    [2, 2, 1]])
+    </pre>
+</div>
+
+<p class="for_info_only">
+    <strong>How it is used: </strong>
+    This a funny combinatorial problem that could help you on dangerous journey in remote jungle for an ancient treasure,
+    as we all know,
+    ancient civilizations hide their treasure with tricky puzzles! ;-)
+</p>
+
+
+<p>
+    <strong>Precondition:</strong>
+    &forall; x ∈ matrix : 0 < x < 10<br>
+    |matrix| = 3x3
+</p>

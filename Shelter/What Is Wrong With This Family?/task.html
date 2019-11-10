@@ -1,0 +1,60 @@
+<div class="story">
+    <p>
+        Michael always knew that there was something wrong with his family. Many strangers were introduced to him as part of his family.
+    </p>
+
+    <p>
+        Michael should figure this out. He spent almost a month parsing family archives. He has all father-son connections of his entire family collected in one place.
+    </p>
+    <p>
+        With all that data Michel can easily understand who the strangers are. Or maybe the only stranger in this family is Michael? Let’s see.
+    </p>
+</div>
+
+<p>
+    You have a list of family relationships between father and son. Every element on this list has two elements. The first is the father's name, the second is a son’s name. All names in the family are unique. Check if the family tree is correct. There are no strangers in the family tree. All connections in the family are natural.
+</p>
+
+<p><strong>Input: </strong>list of lists. Every element has two strings. List has at least one element</p>
+
+<p><strong>Output: </strong>bool. Is family tree correct.</p>
+
+<p style="text-align: center;"><img src="https://py-static.checkio.org/media/task/media/80ab1f5188594a8b8561f7726a5e7689/schema.png" style="max-height: 305px"></p>
+
+<div class="for_info_only">
+    <p><strong>Example:</strong></p>
+<pre class="brush: python">
+is_family([
+  ['Logan', 'Mike']
+]) == True
+is_family([
+  ['Logan', 'Mike'],
+  ['Logan', 'Jack']
+]) == True
+is_family([
+  ['Logan', 'Mike'],
+  ['Logan', 'Jack'],
+  ['Mike', 'Alexander']
+]) == True
+is_family([
+  ['Logan', 'Mike'],
+  ['Logan', 'Jack'],
+  ['Mike', 'Logan']
+]) == False  # Can you be a father for your father?
+is_family([
+  ['Logan', 'Mike'],
+  ['Logan', 'Jack'],
+  ['Mike', 'Jack']
+]) == False  # Can you be a father for your brother?
+is_family([
+  ['Logan', 'William'],
+  ['Logan', 'Jack'],
+  ['Mike', 'Alexander']
+]) == False  # Looks like Mike is stranger in Logan's family
+</pre>
+</div>
+<br />
+<p>
+    <strong>Precondition:</strong>
+    <i>1 <= len(tree) < 100</i>
+</p>

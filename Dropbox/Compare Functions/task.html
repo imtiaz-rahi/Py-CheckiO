@@ -1,0 +1,78 @@
+<blockquote>
+    <p>
+        <span>
+            <em>Okay, I guess we have to turn to plan B.<br>
+            What's plan B?<br>
+            Why wasn't that plan A?<br></em>
+        </span>
+    </p>
+    <p>
+        <span>- The Big Band Theory : "The Lizard-Spock Expansion"</span>
+    </p>
+</blockquote>
+
+<blockquote>
+    <p>
+        <span>
+            <em>doveryai no proveryai (trust, but verify)<br></em>
+        </span>
+    </p>
+    <p>
+        <span>- Russian proverb adopted as signature phrase by Ronald Reagan</span>
+    </p>
+</blockquote>
+
+<p class="story">
+    
+</p>
+ 
+<p>
+    Two functions <em>f</em> and <em>g</em> are provided as inputs to <em>checkio</em>.  The first function <em>f</em> is 
+    the primary function and the second function <em>g</em> is the backup.  Use your coding skills to return a third function
+    <em>h</em> which returns the same output as <em>f</em> unless <em>f</em> raises an exception or returns <em>None</em>.
+    In this case <em>h</em> should return the same output as <em>g</em>.  If both <em>f</em> and <em>g</em> raise exceptions
+    or return <em>None</em>, then <em>h</em> should return <em>None</em>.
+</p>
+
+<p>
+    As a second output, <em>h</em> should return a status string indicating whether the function values are the same and
+    if either function erred.  A function errs if it raises an exception or returns a null value (<em>None</em>).
+</p>
+<p>
+    The status string should be set to: "same" if <em>f</em> and <em>g</em> return the same output and neither errs,
+    "different" if <em>f</em> and <em>g</em> return different outputs and neither errs, "f_error" if <em>f</em> errs 
+    but not <em>g</em>, "g_error" if <em>g</em> errs but not <em>f</em>, or "both_error" if both err.
+</p>
+
+<p>
+    <strong>Input: </strong> Two functions: f (primary) and g (backup).
+</p>
+
+<p>
+    <strong>Output: </strong> A function h which takes arbitrary inputs and returns a two-tuple.
+</p>
+
+
+<div class="for_info_only">
+
+    <p>
+        <strong>Example:</strong>
+    </p>
+    <pre class="brush: python">
+        f = lambda x,y: x+y
+        g = lambda x,y: (x**2 - y**2)/(x-y)
+        checkio(f,g)(1,3) == (4,"same")
+        checkio(f,g)(1,1.01) == (2.01,"different") # numerical precision difference
+        checkio(f,g)(1,1) == (2,"g_error") # g divides by zero</pre>
+</div>
+
+<p class="for_info_only">
+    <strong>How it is used: </strong>
+    This is an exercise in working with functions as first class objects.
+</p>
+
+<p>
+    <strong>Precondition:</strong>
+    hasattr(f,'__call__');<br>
+    hasattr(g,'__call__')<br>
+</p>

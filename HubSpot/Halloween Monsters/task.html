@@ -1,0 +1,74 @@
+
+<p>
+    You have to call the monsters from another world in preparation for Halloween.
+</p>
+
+<div class="for_info_only">
+    <p style="text-align: center">
+        <img src='https://py-static.checkio.org/media/task/media/d73e8f9b5754439d94244b199b75a614/halloween_monsters_picture.png' style="width:100%; max-width: 600px" />
+    </p>
+</div>
+
+<p>
+    You are given a string as an input value.
+    You have to use it to make monster names and return the <strong>maximum</strong> number.
+    You can call only <strong>9</strong> kinds of monsters:
+</p>
+
+<ul>
+    <li><strong>frankenstein</strong></li>
+    <li><strong>ghost</strong></li>
+    <li><strong>jack</strong></li>
+    <li><strong>mummy</strong></li>
+    <li><strong>skeleton</strong></li>
+    <li><strong>vampire</strong></li>
+    <li><strong>werewolf</strong></li>
+    <li><strong>witch</strong></li>
+    <li><strong>zombie</strong></li>
+</ul>
+
+
+
+<strong>NOTE:</strong>
+<ul>
+    <li>You can make multiple monster names of the same kind.</li>
+    <li>You don't need to use all the characters.</li>
+    <li>If you can't make a monster name, return 0.</li>
+</ul>
+
+
+
+<div class="for_info_only">
+    <p>
+        <strong>Example:</strong>
+    </p>
+<!-- Do NOT change the indentation of this pre-block -->
+<pre class="brush: python">halloween_monsters('tkjagchso') == 2               # jack, ghost
+halloween_monsters('finhtiistchwwaerecnnkt') == 3  # witch, witch, frankenstein
+</pre>
+<!-- pre-block end -->
+    <p style="text-align: center;">
+    </p>
+</div>
+
+<p>
+    <strong>Input: </strong>
+    The spell (a string).
+</p>
+
+<p>
+    <strong>Output: </strong>
+    A number of monsters (an integer).
+</p>
+
+<p>
+    <strong>Precondition:</strong>
+</p>
+<ul>
+    <li>all(re.fullmatch('[a-z]', i) for i in input)</li>
+    <li>len(input) &le; 100</li>
+</ul>
+<p>
+    <strong>How it is used:</strong>
+    To calculate materials and products.
+</p>

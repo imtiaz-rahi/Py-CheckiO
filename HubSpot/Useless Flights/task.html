@@ -1,0 +1,43 @@
+<!-- Describe task in general -->
+<div class="story for_info_only">
+<p> - Chief, we have a new flight schedule. It just require your signature and we are ready to launch.</p>
+
+<p> - Wow, so many planes! I’d like to make sure that we really need so many of them.</p>
+
+<p> - Of course.</p> 
+
+<p> - Let’s check!</p>
+</div>
+
+<p>This task is a continuation of the <a href="/mission/the-cheapest-flight/">“Cheapest Flights”</a> mission.</p>
+
+<p>Here you have a flight schedule by which you need to find out whether all flights are really necessary.</p>
+
+<p>For example: If from the point A to point C you can fly directly for $ 100, but you can also go through the point B (from A to B, and then from B to C) for $ 90, then connection A – C isn’t really needed. But if the price from A to C is $ 90 or less, then this connection remains on the schedule.</p>
+
+<!-- Explain input and output values -->
+<p>
+    <strong>Input: </strong> An array of all possible connections. Each element in the array is also an array of 3 elements: the first city, second city and flight price.
+</p>
+
+<p>
+    <strong>Output: </strong> An array of the unnecessary flight indices.
+</p>
+
+
+<!-- Put some usage examples -->
+<div class="for_info_only">
+    <p>
+        <strong>Example:</strong>
+    </p>
+
+
+<pre class="brush: python">useless_flight([['A', 'B', 50],
+  ['B', 'C', 40],
+  ['A', 'C', 100]]) == [2]
+useless_flight([['A', 'B', 50],
+  ['B', 'C', 40],
+  ['A', 'C', 90]]) == []
+</pre>
+
+</div>

@@ -1,0 +1,167 @@
+<style>
+.task-description td
+{
+	align:         center;
+	border-bottom: 1px solid #000000;
+	border-top:    1px solid #000000;
+}
+.task-description .blank
+{
+	border-width: 0px
+}
+.task-description .left
+{
+	align:        center;
+	border-left: 1px solid #000000;
+	padding-left: 10px;
+	padding-right: 10px;	
+}
+.task-description .right
+{
+	align:        center;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+}
+
+.task-description table {
+       margin-left: 15%;	
+}
+
+#animation-results-block .task-description table {
+       margin-left: 0;	
+}
+#animation-results-block .task-description .left {
+	padding-left: 0px;
+	padding-right: 0px;	
+}
+</style>
+<p>
+	An IP network is a set of routers that communicate routing information using a protocol.
+	A router is uniquely identified by an IP address. <br>
+	In IPv4, an IP address consists of 32 bits, canonically represented as 4 decimal numbers of 8 bits each. The decimal numbers range from 0 (00000000) to 255 (11111111).<br>
+	Each router has a "routing table" that contains a list of IP addresses, for the router to know where to send IP packets.<br>
+</p>
+<p>
+	
+</p>
+<p>
+	<h3>Route summarization in IP networks</h3>
+	As the network grows large (hundreds of routers), the number of IP addresses in the routing table increases rapidly.
+	Maintaining a high number of IP addresses in the routing table would result in a loss of performances (memory, bandwidth and CPU resources limitation).<br>
+	Route summarization, also called route aggregation, consists in reducing the number of routes by aggregating them into a "summary route".<br><br>
+
+	Let's consider the following example:<br>
+	
+<p style="text-align: center;">
+    <img class="for_info_only"
+         title="summary route"
+         src="https://py-static.checkio.org/media/task/media/49d80613705b46d8a5ed24088088d65a/summarize.PNG"
+         alt="summary route"
+         width="700px"/>
+</p>
+	
+	We have 4 routers connected to <strong>A</strong>. <strong>A</strong> is aware about all 4 IP addresses, because it has a direct interface to each of them. However, <strong>A</strong> will not send them all to <strong>B</strong>.<br>
+	Instead, it will aggregate the addresses into a summary route, and send this new route to <strong>B</strong>. <br>
+	This implies that: <br><br>
+	<ol>
+		<li style="padding-top: 8px; padding-left: 10%; width: 80%;">- Less bandwidth is used on the link between <strong>A</strong> and <strong>B</strong>.</li>
+		<li style="padding-left: 10%; width: 80%;">- <strong>B</strong> saves memory: it has only one route to store in its routing table</li>
+		<li style="padding-left: 10%; width: 80%;">- <strong>B</strong> saves CPU resources: there are less entries to consider when handling incoming IP packets</li>
+	</ol>
+</p>    
+<p>
+	<h3>Computing a summary route</h3>
+
+	<strong>A</strong> has all 4 addresses stored in its routing table. 
+	<br><br>
+	<table cellspacing="0" cols="16" border="0">
+		<colgroup width="129"></colgroup>
+		<colgroup width="18"></colgroup>
+		<colgroup span="14" width="36"></colgroup>
+		<tbody>
+			<tr><td class="left" style="height: 22px"><b>Address 1</b></td>
+				<td class="right sdval="0" sdnum="1033;"><b>172.16.12.0</b></td>
+			</tr>
+			<tr><td class="left" style="height: 22px"><b>Address 2</b></td>
+				<td class="right sdval="0" sdnum="1033;"><b>172.16.13.0</b></td>
+			</tr>
+			<tr><td class="left" style="height: 22px"><b>Address 3</b></td>
+				<td class="right sdval="0" sdnum="1033;"><b>172.16.14.0</b></td>
+			</tr>
+			<tr><td class="left" style="height: 22px"><b>Address 4</b></td>
+				<td class="right" sdval="0" sdnum="1033;"><b>172.16.15.0</b></td>
+			</tr>
+		</tbody>
+	</table>
+<br><br>
+
+	<strong>A</strong> will convert these IP addresses to binary format, align them and find the boundary line between the common prefix on the left (highlighted in red), and the remaining bits on the right.
+	<br><br>
+	<table cellspacing="0" cols="16" border="0">
+		<colgroup width="140"></colgroup>
+		<colgroup width="18"></colgroup>
+		<colgroup span="14" width="45"></colgroup>
+		<tbody>
+			<tr><td class="left" style="height: 22px; width: 50px"><b>Address 1</b></td>
+				<td class="left"><b><font color="red">10101100</font></b></td>
+				<td class="left"><b><font color="red">00010000</font></b></td>
+				<td class="left"><b><font color="red">000011</font>00</b></td>
+				<td class="right"><b>00000000</b></td>
+			</tr>
+			<tr><td class="left" style="height: 22px; width: 50px"><b>Address 2</b></td>
+				<td class="left"><b><font color="red">10101100</font></b></td>
+				<td class="left"><b><font color="red">00010000</font></b></td>
+				<td class="left"><b><font color="red">000011</font>01</b></td>
+				<td class="right"><b>00000000</b></td>
+			</tr>
+			<tr><td class="left" style="height: 22px; width: 50px"><b>Address 3</b></td>
+				<td class="left"><b><font color="red">10101100</font></b></td>
+				<td class="left"><b><font color="red">00010000</font></b></td>
+				<td class="left"><b><font color="red">000011</font>10</b></td>
+				<td class="right"><b>00000000</b></td>
+			</tr>
+			<tr><td class="left" style="height: 22px; width: 50px"><b>Address 4</b></td>
+				<td class="left"><b><font color="red">10101100</font></b></td>
+				<td class="left"><b><font color="red">00010000</font></b></td>
+				<td class="left"><b><font color="red">000011</font>11</b></td>
+				<td class="right"><b>00000000</b></td>
+			</tr>
+		</tbody>
+	</table>
+<br><br>
+
+<strong>A</strong> creates a new IP address made of the common bits, and all other bits set to "0".<br> This new IP address is converted back to decimal numbers.<br>
+Finally, <strong>A</strong> computes the number of common bits, also called "subnet".<br>
+The summary route is this new IP address, followed by a slash and the subnet: 172.16.12.0/22
+
+</p>
+
+<p>
+	<b>Input: </b> A list of strings containing the IP addresses
+</p>
+
+<p>
+	<b>Output: </b> A string containing the summary route, represented as an IP address, followed by a slash and the subnet.
+</p>
+
+
+<div class="for_info_only">
+	<p>
+		<b>Example:</b>
+	</p>
+	<pre class="brush: python">
+checkio(["172.16.12.0", "172.16.13.0", "172.16.14.0", "172.16.15.0"]) == "172.16.12.0/22"
+checkio(["172.16.12.0", "172.16.13.0", "172.155.43.9"]) == "172.0.0.0/8"
+checkio(["172.16.12.0", "172.16.13.0", "172.155.43.9", "146.11.2.2"]) == "128.0.0.0/2"
+</pre>
+</div>
+
+<p>
+	<b>Preconditions: </b><br>
+	all(re.match(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$",d) for d in data))<br>
+	all(-1 < int(n) < 256 for n in d.split(".") for d in data)<br>
+	len(data) == len(set(data)) and len(data) > 1</td></td><br>
+</p>
+

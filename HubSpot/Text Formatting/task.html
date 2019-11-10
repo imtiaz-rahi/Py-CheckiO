@@ -1,0 +1,76 @@
+<!-- Describe task in general -->
+<p>
+	You are given a long line (a monospace font), and you have to break the line in order to respect a given width.
+	Then you have to format the text according to the given style: 'l' means you have to align the text to the <strong>l</strong>eft, 'c' for <strong>c</strong>enter, 'r' for <strong>r</strong>ight, and 'j' means you have to <strong>j</strong>ustify the text.
+	Finally, the lines of the output shouldn’t end with a whitespace.
+</p>
+
+<p>
+	If you have to put 2 * n + 1 spaces around a line in order to center it, then put n spaces before, not n + 1.
+</p>
+
+<p>
+	The justification rules:
+	<ul>
+		<li>Since we can't always put the same number of spaces between words in a line, put big blocks of spaces first. For example: X---X---X--X--X--X when you have to put 12 spaces in 5 gaps: 3-3-2-2-2.</li>
+		<li>Don't justify the last line of a text.</li>
+	</ul>
+</p>
+
+<p>
+	You won't have to consider splitting a word into two parts because the given widths are big enough.
+</p>
+
+
+<!-- Explain input and output values -->
+<p>
+	<strong>Input:</strong>
+	A text (string), width (integer) and style (string).
+</p>
+
+<p>
+	<strong>Output:</strong>
+	The formatted text (string).
+</p>
+
+
+<!-- Put some usage examples -->
+<div class="for_info_only">
+<p>
+	<strong>Examples:</strong>
+</p>
+
+<pre class="brush: python">
+text = "Hi, my name is Alex and I am 18 years old."
+
+text_formatting(text, 20, 'l') == \
+"""Hi, my name is Alex
+and I am 18 years
+old."""
+
+text_formatting(text, 20, 'c') == \
+"""Hi, my name is Alex
+ and I am 18 years
+        old."""
+
+text_formatting(text, 20, 'r') == \
+""" Hi, my name is Alex
+   and I am 18 years
+                old."""
+
+text_formatting(text, 20, 'j') == \
+"""Hi,  my name is Alex
+and  I  am  18 years
+old."""
+</pre>
+</div>
+
+<p>
+	<strong>Preconditions:</strong>
+<ul>
+	<li>all(len(word) <= width for word in text.split())</li>
+	<li>'\n' not in text</li>
+	<li>style in ('l', 'c', 'r', 'j')</li>
+	<li>0 < len(text) <= 1000</li>
+</ul>
+</p>

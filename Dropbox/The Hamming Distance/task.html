@@ -1,0 +1,51 @@
+<p>
+    The Hamming distance between two binary integers is the number of bit positions that differs
+    (<a href="http://en.wikipedia.org/wiki/Hamming_distance">read more about the Hamming distance on Wikipedia</a>).
+    For example:
+</p>
+<pre>
+    117 = 0 1 1 1 0 1 0 1
+     17 = 0 0 0 1 0 0 0 1
+      H = 0+1+1+0+0+1+0+0 = 3
+
+</pre>
+<p>
+    You are given two positive numbers (N, M) in decimal form.
+    You should calculate the Hamming distance between these two numbers in binary form.
+</p>
+
+<p>
+    <strong>Input: </strong> Two arguments as integers.
+</p>
+
+<p>
+    <strong>Output: </strong> The Hamming distance as an integer.
+</p>
+
+<div class="for_info_only">
+
+<p>
+    <strong>Example:</strong>
+</p>
+<pre class="brush: python">
+checkio(117, 17) == 3
+checkio(1, 2) == 2
+checkio(16, 15) == 5
+</pre>
+</div>
+
+<p class="for_info_only">
+    <strong>How it is used: </strong>
+    This is a basis for Hamming code and other linear error-correcting programs.
+    The Hamming distance is used in systematics as a measure of genetic distance.
+    On a grid (ie: a chessboard,) the Hamming distance is the minimum number of moves
+    it would take a rook to move from one cell to the other.
+
+</p>
+
+
+<p>
+    <strong>Precondition:</strong><br>
+    0 &lt; n &lt; 10<sup>6</sup><br>
+    0 &lt; m &lt; 10<sup>6</sup><br>
+</p>

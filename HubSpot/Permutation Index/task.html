@@ -1,0 +1,64 @@
+<p>
+    The mission is an <a href="https://py.checkio.org/forum/post/8353/what-types-of-new-missions-do-you-want/#comment-76126">idea</a> of <a href="https://py.checkio.org/user/przemyslaw.daniel/">przemyslaw.daniel</a>.
+</p>
+
+<p>
+    Let’s imagine a list of all the permutations of a given set.
+    Every item on the list has it’s index (starting from 1).
+    The task is to calculate the permutation index.
+</p>
+
+<p>You are given a tuple of integers.
+    It represents one of the permutations of the consecutive integers (starting from 0).
+    You have to return the permutation index of the tuple.
+</p>
+<p><strong>For example</strong></p>
+<ul>
+    <li>Input: (1, 2, 0)</li>
+    <ul>
+        <li>All the consecutive permutations are:</li>
+        <ol>
+            <li>(0, 1, 2)</li>
+            <li>(0, 2, 1)</li>
+            <li>(1, 0, 2)</li>
+            <li>(1, 2, 0) !!!</li>
+            <li>(2, 0, 1)</li>
+            <li>(2, 1, 0)</li>
+        </ol>
+    </ul>
+    <li>Output: 4</li>
+</ul>
+
+
+<div class="for_info_only">
+    <p>
+        <strong>Example:</strong>
+    </p>
+<!-- Do NOT change the indentation of this pre-block -->
+<pre class="brush: python">assert permutation_index((2, 0, 1)) == 5
+assert permutation_index((2, 1, 3, 0, 4, 5)) == 271
+</pre>
+<!-- pre-block end -->
+</div>
+
+<p>
+    <strong>Input: </strong>
+    One of the permutations of the consecutive integers (a tuple of integers).
+</p>
+
+<p>
+    <strong>Output: </strong>
+    The permutation index (an integer).
+</p>
+
+<p>
+    <strong>Precondition:</strong>
+</p>
+<ul>
+    <li>sorted(input) == list(range(len(input)))</li>
+</ul>
+<!--
+<p>
+    <strong>How it is used:</strong>
+</p>
+-->

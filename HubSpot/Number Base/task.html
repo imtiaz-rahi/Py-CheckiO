@@ -1,0 +1,60 @@
+<img class="for_info_only half" src="https://py-static.checkio.org/media/task/media/7274ef1773fa4b0dbac869528e247c67/base.png" style="max-height: 400px; float:left">
+
+<p>
+    Do you remember <a href="http://en.wikipedia.org/wiki/Radix">the radix</a> and
+    <a href="http://en.wikipedia.org/wiki/Numeral_system">Numeral systems</a> from math class?
+    Let's practice with it.
+</p>
+
+<p>
+    You are given a positive number as a string along with the radix for it. Your function should convert it into
+    decimal form.
+    The radix is less than 37 and greater than 1.
+    The task uses digits and the letters A-Z for the strings.
+</p>
+
+<p>
+    Watch out for cases when the number cannot be converted.
+    For example: "1A" cannot be converted with radix 9.
+    For these cases your function should return -1.
+</p>
+
+<p>
+    <strong>Input: </strong> Two arguments. A number as string and a radix as an integer.
+</p>
+
+<p>
+    <strong>Output: </strong> The converted number as an integer.
+</p>
+
+<p class="for_info_only">
+    <strong>Example:</strong>
+    
+<pre class="brush: python">
+checkio("AF", 16) == 175
+checkio("101", 2) == 5
+checkio("101", 5) == 26
+checkio("Z", 36) == 35
+checkio("AB", 10) == -1
+</pre>
+    
+</p>
+
+<p class="for_info_only">
+    <strong>How it is used: </strong>
+    Here you will learn how to work with the various numeral systems and handle exceptions.
+</p>
+
+<p>
+    <strong>Precondition: </strong><br>
+    re.match("\A[A-Z0-9]\Z", str_number)<br>
+    0 &lt; len(str_number) &le; 10<br>
+    2 &le; radix &le; 36
+</p>
+
+<div class="facts for_info_only">
+    <p>
+        We have an adviser team on CheckiO, so if you get stuck solving a challenge, use the “ask advisers” function to
+        ask someone a question about it.
+    </p>
+</div>
