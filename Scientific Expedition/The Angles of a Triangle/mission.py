@@ -15,7 +15,6 @@ def checkio(a: int, b: int, c: int) -> List[int]:
     return sorted([a1, a2, (180 - a1 - a2)])
 
 
-#These "asserts" using only for self-checking and not necessary for auto-testing
 if __name__ == '__main__':
     print("Example:")
     print(checkio(4, 4, 4))
