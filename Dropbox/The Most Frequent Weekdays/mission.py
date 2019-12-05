@@ -1,13 +1,13 @@
-def most_frequent_days(a):
-    # your code here
-    return None
+from calendar import weekday, day_name
+
+
+def most_frequent_days(year):
+    return [day_name[day] for day in sorted({weekday(year, 1, 1), weekday(year, 12, 31)})]
 
 
 if __name__ == '__main__':
     print("Example:")
     print(most_frequent_days(1084))
-
-    # These "asserts" are used for self-checking and not for an auto-testing
     assert most_frequent_days(1084) == ['Tuesday', 'Wednesday']
     assert most_frequent_days(1167) == ['Sunday']
     assert most_frequent_days(1216) == ['Friday', 'Saturday']
